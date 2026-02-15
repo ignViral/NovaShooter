@@ -1,0 +1,14 @@
+{
+  "name": "alien-shooter",
+  "version": "1.0.0",
+  "description": "Alien Shooter game with persistent user data",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-session": "^1.17.3"
+  }
+}
+
