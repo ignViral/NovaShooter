@@ -51,12 +51,15 @@
     }
 
     #pathContainer {
-      flex: 1;
+      max-height: 380px;
+      overflow-y: auto;
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 0;
       position: relative;
+      scrollbar-width: thin;
+      scrollbar-color: #333 #111;
     }
 
     .path-node {
@@ -694,6 +697,266 @@
       color: #667;
       cursor: pointer;
     }
+
+    /* ─── Prestige Leaderboard ─────────────────────── */
+    #prestigeSection {
+      border-top: 1px solid #1a1a3a;
+      padding-top: 10px;
+      margin-top: auto;
+      flex-shrink: 0;
+    }
+    #prestigeSection h3 {
+      color: #ffaa44;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+    .prestige-entry {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px 6px;
+      font-size: 11px;
+      color: #8898cc;
+    }
+    .prestige-entry .rank {
+      color: #ffaa44;
+      font-weight: 700;
+      width: 18px;
+      text-align: center;
+    }
+    .prestige-entry .name {
+      flex: 1;
+      color: #99aadd;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .prestige-entry .plevel {
+      color: #ffcc44;
+      font-weight: 700;
+      font-size: 10px;
+    }
+    .prestige-no-data {
+      text-align: center;
+      color: #445;
+      font-size: 10px;
+      font-style: italic;
+      padding: 10px 0;
+    }
+
+    /* ─── Prestige Modal ──────────────────────────── */
+    #prestigeModal {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: rgba(4, 4, 16, 0.92);
+      z-index: 150;
+    }
+    #prestigeModal.hidden { display: none; }
+    #prestigeModalBox {
+      background: #0d0f1e;
+      border: 2px solid #ffaa44;
+      border-radius: 12px;
+      padding: 24px 28px;
+      width: 420px;
+      max-height: 80vh;
+      overflow-y: auto;
+      box-shadow: 0 0 60px rgba(255, 170, 68, 0.2);
+      text-align: center;
+      color: #ccd8ff;
+    }
+    #prestigeModalBox h2 {
+      color: #ffcc44;
+      font-size: 24px;
+      margin-bottom: 6px;
+      text-shadow: 0 0 15px rgba(255, 200, 60, 0.5);
+    }
+    .prestige-warning {
+      color: #ff6644;
+      font-size: 14px;
+      font-weight: 700;
+      margin: 12px 0;
+      padding: 10px;
+      border: 1px solid #662222;
+      border-radius: 6px;
+      background: rgba(255, 50, 30, 0.1);
+    }
+    .prestige-benefits {
+      text-align: left;
+      margin: 12px 0;
+      padding: 10px;
+      border: 1px solid #334;
+      border-radius: 6px;
+      background: rgba(68, 255, 170, 0.05);
+    }
+    .prestige-benefits h4 {
+      color: #44ffaa;
+      font-size: 13px;
+      margin-bottom: 6px;
+    }
+    .prestige-benefits li {
+      color: #99aadd;
+      font-size: 12px;
+      margin-bottom: 4px;
+      list-style: none;
+      padding-left: 12px;
+    }
+    .prestige-benefits li::before {
+      content: '+ ';
+      color: #44ffaa;
+    }
+    .prestige-cost {
+      color: #ffcc44;
+      font-size: 16px;
+      font-weight: 700;
+      margin: 10px 0;
+    }
+    .prestige-modal-btns {
+      display: flex;
+      gap: 12px;
+      margin-top: 16px;
+    }
+    .prestige-modal-btns button {
+      flex: 1;
+      padding: 10px;
+      font-size: 14px;
+      font-weight: 700;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: transform 0.15s;
+    }
+    .prestige-modal-btns button:hover { transform: scale(1.03); }
+    #prestigeConfirmBtn {
+      background: linear-gradient(135deg, #ffaa44, #ff6633);
+      color: #fff;
+      box-shadow: 0 3px 12px rgba(255, 170, 68, 0.3);
+    }
+    #prestigeCancelBtn {
+      background: #1a1c30;
+      color: #8899cc;
+      border: 1px solid #334 !important;
+    }
+
+    /* ─── Prestige Button in Upgrades ─────────────── */
+    .prestige-btn-wrap {
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid #1a1a3a;
+    }
+    .prestige-activate-btn {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      border: 2px solid #ffaa44;
+      border-radius: 6px;
+      cursor: pointer;
+      background: linear-gradient(135deg, rgba(255,170,68,0.15), rgba(255,100,50,0.15));
+      color: #ffcc44;
+      text-shadow: 0 0 8px rgba(255,200,60,0.3);
+      transition: transform 0.15s, background 0.2s;
+    }
+    .prestige-activate-btn:hover:not(:disabled) {
+      transform: scale(1.03);
+      background: linear-gradient(135deg, rgba(255,170,68,0.25), rgba(255,100,50,0.25));
+    }
+    .prestige-activate-btn:disabled {
+      opacity: 0.4;
+      cursor: default;
+    }
+    .prestige-info {
+      text-align: center;
+      font-size: 10px;
+      color: #ffaa44;
+      margin-bottom: 6px;
+    }
+
+    /* ─── Ultimate Abilities Section ──────────────── */
+    .ability-section-title {
+      color: #ffaa44;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-align: center;
+      margin: 12px 0 8px;
+      padding-top: 10px;
+      border-top: 1px solid #1a1a3a;
+    }
+    .ability-item {
+      background: rgba(15, 18, 40, 0.8);
+      border: 1px solid #1a1a3a;
+      border-radius: 6px;
+      padding: 8px;
+      margin-bottom: 6px;
+    }
+    .ability-item.locked { opacity: 0.4; }
+    .ability-header {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 4px;
+    }
+    .ability-icon {
+      font-size: 16px;
+      width: 24px;
+      text-align: center;
+    }
+    .ability-name {
+      font-size: 11px;
+      font-weight: 700;
+      color: #ccd8ff;
+    }
+    .ability-key {
+      font-size: 9px;
+      color: #888;
+      background: #1a1a2a;
+      padding: 1px 5px;
+      border-radius: 3px;
+      margin-left: auto;
+    }
+    .ability-desc {
+      font-size: 10px;
+      color: #667;
+      margin-bottom: 4px;
+    }
+    .ability-buy-btn {
+      display: block;
+      width: 100%;
+      padding: 4px;
+      font-size: 10px;
+      font-weight: 700;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: transform 0.15s;
+    }
+    .ability-buy-btn.owned {
+      background: #1a3322;
+      color: #44ff88;
+      cursor: default;
+    }
+    .ability-buy-btn.buy {
+      background: linear-gradient(135deg, #ffaa44, #ff6633);
+      color: #fff;
+    }
+    .ability-buy-btn.buy:hover:not(:disabled) { transform: scale(1.03); }
+    .ability-buy-btn.buy:disabled {
+      opacity: 0.4;
+      cursor: default;
+    }
+    .ability-buy-btn.locked-btn {
+      background: #1a1a2a;
+      color: #445;
+      cursor: default;
+    }
   </style>
 </head>
 <body>
@@ -721,6 +984,10 @@
   <div id="spacePathPanel">
     <h3>Checkpoints</h3>
     <div id="pathContainer"></div>
+    <div id="prestigeSection">
+      <h3>&#9733; Prestige Board</h3>
+      <div id="prestigeList"></div>
+    </div>
   </div>
 
   <!-- Game Column -->
@@ -778,6 +1045,11 @@
     </div>
     <div id="adminResult"></div>
     <button id="adminClose" type="button">Close</button>
+  </div>
+
+  <!-- Prestige Modal -->
+  <div id="prestigeModal" class="hidden">
+    <div id="prestigeModalBox"></div>
   </div>
 
   <!-- Upgrades Panel -->
@@ -845,15 +1117,18 @@ function loginSuccess(user) {
   }
   buildCheckpoints();
   buildUpgradesPanel();
-  // Show admin button for 'alex'
-  if (user.username.toLowerCase() === 'alex') {
+  fetchPrestigeLeaderboard();
+  // Show admin button
+  if (user.username.toLowerCase() === 'test') {
     document.getElementById('adminBtn').style.display = 'block';
   }
   showMainMenu();
 }
 
 function updatePointsDisplay() {
-  pointsDisplay.textContent = 'POINTS: ' + (currentUser ? currentUser.points : 0);
+  const pts = currentUser ? currentUser.points : 0;
+  const prestige = getPrestigeLevel();
+  pointsDisplay.textContent = 'POINTS: ' + pts + (prestige > 0 ? '  \u2605P' + prestige : '');
 }
 
 document.getElementById('btnSignup').addEventListener('click', async () => {
@@ -972,7 +1247,9 @@ function showCheckpointPopup(w) {
 
 async function saveScore(finalScore) {
   if (!currentUser) return;
-  const data = await apiCall('/api/user/addpoints', { score: finalScore });
+  const prestigeMult = 1 + getPrestigeBonus() / 100;
+  const adjustedScore = Math.floor(finalScore * prestigeMult);
+  const data = await apiCall('/api/user/addpoints', { score: adjustedScore });
   if (data.user) {
     currentUser = data.user;
     updatePointsDisplay();
@@ -1004,7 +1281,10 @@ let frameCount = 0;
 let activePowerups = { rapidFire: 0, multiShot: 0, spreadShot: 0 };
 let introducedTypes = {};
 let infoBoxTimer = 0;
-let savedCheckpoints = new Set(); // track which checkpoints were saved this run
+let savedCheckpoints = new Set();
+let abilityCooldowns = { novaBlast: 0, timeWarp: 0, orbitalStrike: 0 };
+let abilityActiveTimers = { timeWarp: 0 };
+let orbitalStrikeTimer = 0;
 
 // ─── Alien Types ──────────────────────────────────────────────
 const ALIEN_TYPES = {
@@ -1091,6 +1371,29 @@ function getUpgradeCost(id) {
   return Math.floor(def.baseCost * Math.pow(def.costScale, level));
 }
 
+const ULTIMATE_ABILITIES = {
+  novaBlast: { name: 'Nova Blast', desc: 'Destroys all regular enemies on screen', key: 'Q', cost: 500, cooldown: 3600, requiredPrestige: 1, color: '#ff6644' },
+  timeWarp: { name: 'Time Warp', desc: 'Slows all enemies by 50% for 8 seconds', key: 'E', cost: 1500, cooldown: 2700, requiredPrestige: 3, color: '#44ddff' },
+  orbitalStrike: { name: 'Orbital Strike', desc: 'Massive beam deals heavy damage to all enemies', key: 'R', cost: 3000, cooldown: 5400, requiredPrestige: 5, color: '#ffaa00' }
+};
+
+function getPrestigeBonus() {
+  if (!currentUser || !currentUser.prestige || currentUser.prestige < 1) return 0;
+  return 10 + (currentUser.prestige - 1) * 5;
+}
+function getPrestigeLevel() {
+  return (currentUser && currentUser.prestige) ? currentUser.prestige : 0;
+}
+function allUpgradesMaxed() {
+  for (const [id, def] of Object.entries(UPGRADES)) {
+    if (getUpgradeLevel(id) < def.maxLevel) return false;
+  }
+  return true;
+}
+function hasAbility(id) {
+  return currentUser && currentUser.prestigeAbilities && currentUser.prestigeAbilities.includes(id);
+}
+
 function buildUpgradesPanel() {
   upgradesContainer.innerHTML = '';
   for (const [id, def] of Object.entries(UPGRADES)) {
@@ -1126,6 +1429,68 @@ function buildUpgradesPanel() {
   upgradesContainer.querySelectorAll('.upgrade-buy-btn:not(:disabled):not(.maxed)').forEach(btn => {
     btn.addEventListener('click', () => purchaseUpgrade(btn.dataset.id));
   });
+
+  const prestige = getPrestigeLevel();
+  if (prestige > 0) {
+    const abilTitle = document.createElement('div');
+    abilTitle.className = 'ability-section-title';
+    abilTitle.textContent = '\u2605 Ultimate Abilities';
+    upgradesContainer.appendChild(abilTitle);
+    for (const [id, def] of Object.entries(ULTIMATE_ABILITIES)) {
+      const locked = prestige < def.requiredPrestige;
+      const owned = hasAbility(id);
+      const canBuy = !locked && !owned && currentUser && currentUser.points >= def.cost;
+      const item = document.createElement('div');
+      item.className = 'ability-item' + (locked ? ' locked' : '');
+      item.innerHTML = `
+        <div class="ability-header">
+          <span class="ability-icon" style="color:${def.color};">\u2726</span>
+          <span class="ability-name">${def.name}</span>
+          <span class="ability-key">${def.key}</span>
+        </div>
+        <div class="ability-desc">${def.desc}</div>
+        <button class="ability-buy-btn ${owned ? 'owned' : locked ? 'locked-btn' : 'buy'}"
+                data-ability="${id}"
+                ${(!canBuy && !owned) ? 'disabled' : (owned ? 'disabled' : '')}>
+          ${owned ? '\u2713 OWNED' : locked ? 'Prestige ' + def.requiredPrestige + ' Required' : 'BUY \u2014 ' + def.cost + ' pts'}
+        </button>
+      `;
+      upgradesContainer.appendChild(item);
+    }
+    upgradesContainer.querySelectorAll('.ability-buy-btn.buy:not(:disabled)').forEach(btn => {
+      btn.addEventListener('click', () => purchaseAbility(btn.dataset.ability));
+    });
+  }
+
+  const prestigeLevel = getPrestigeLevel();
+  if (prestigeLevel < 10) {
+    const wrap = document.createElement('div');
+    wrap.className = 'prestige-btn-wrap';
+    const cost = 10000 * (prestigeLevel + 1);
+    const maxed = allUpgradesMaxed();
+    const canPrestige = maxed && currentUser && currentUser.points >= cost;
+    if (prestigeLevel > 0) {
+      const info = document.createElement('div');
+      info.className = 'prestige-info';
+      info.textContent = '\u2605 Prestige ' + prestigeLevel + ' \u2014 +' + getPrestigeBonus() + '% Speed & Points';
+      wrap.appendChild(info);
+    }
+    const btn = document.createElement('button');
+    btn.className = 'prestige-activate-btn';
+    btn.disabled = !canPrestige;
+    btn.textContent = maxed ? '\u2605 PRESTIGE (' + cost.toLocaleString() + ' pts)' : '\u2605 Max all upgrades to prestige';
+    btn.addEventListener('click', () => { if (canPrestige) showPrestigeModal(); });
+    wrap.appendChild(btn);
+    upgradesContainer.appendChild(wrap);
+  } else {
+    const wrap = document.createElement('div');
+    wrap.className = 'prestige-btn-wrap';
+    const info = document.createElement('div');
+    info.className = 'prestige-info';
+    info.textContent = '\u2605 MAX PRESTIGE 10 \u2014 +' + getPrestigeBonus() + '% Speed & Points';
+    wrap.appendChild(info);
+    upgradesContainer.appendChild(wrap);
+  }
 }
 
 async function purchaseUpgrade(id) {
@@ -1139,12 +1504,239 @@ async function purchaseUpgrade(id) {
   }
 }
 
+// ─── Prestige System ──────────────────────────────────────────
+function activateAbility(id) {
+  if (!hasAbility(id)) return;
+  if (abilityCooldowns[id] > 0) return;
+  const def = ULTIMATE_ABILITIES[id];
+  abilityCooldowns[id] = def.cooldown;
+
+  switch (id) {
+    case 'novaBlast': {
+      for (const a of aliens) {
+        const t = ALIEN_TYPES[a.type];
+        score += t.score * Math.ceil(wave / 2);
+        spawnExplosion(a.x, a.y);
+      }
+      aliens = [];
+      hudScore.textContent = 'SCORE: ' + score;
+      break;
+    }
+    case 'timeWarp':
+      abilityActiveTimers.timeWarp = 480;
+      break;
+    case 'orbitalStrike': {
+      orbitalStrikeTimer = 90;
+      for (let i = aliens.length - 1; i >= 0; i--) {
+        aliens[i].hp -= 10;
+        spawnHitParticles(aliens[i].x, aliens[i].y, '#ffaa00');
+        if (aliens[i].hp <= 0) {
+          const t = ALIEN_TYPES[aliens[i].type];
+          score += t.score * Math.ceil(wave / 2);
+          spawnExplosion(aliens[i].x, aliens[i].y);
+          aliens.splice(i, 1);
+        }
+      }
+      if (boss && !boss.shielded && !boss.invuln) {
+        const dmg = Math.ceil(boss.maxHp * 0.15);
+        boss.hp -= dmg;
+        spawnHitParticles(boss.x, boss.y, '#ffaa00');
+        if (boss.hp <= 0) boss.hp = 1;
+      }
+      hudScore.textContent = 'SCORE: ' + score;
+      break;
+    }
+  }
+}
+
+function updateAbilities() {
+  for (const id in abilityCooldowns) {
+    if (abilityCooldowns[id] > 0) abilityCooldowns[id]--;
+  }
+  if (abilityActiveTimers.timeWarp > 0) abilityActiveTimers.timeWarp--;
+  if (orbitalStrikeTimer > 0) orbitalStrikeTimer--;
+}
+
+function drawAbilityHUD() {
+  const owned = [];
+  for (const [id, def] of Object.entries(ULTIMATE_ABILITIES)) {
+    if (hasAbility(id)) owned.push({ id, def });
+  }
+  if (owned.length === 0) return;
+
+  const startX = W - 8;
+  const startY = 38;
+  for (let i = 0; i < owned.length; i++) {
+    const { id, def } = owned[i];
+    const cd = abilityCooldowns[id];
+    const maxCd = def.cooldown;
+    const ready = cd <= 0;
+    const x = startX - (owned.length - i) * 56;
+    const y = startY;
+
+    ctx.fillStyle = ready ? def.color + '33' : 'rgba(0,0,0,0.5)';
+    ctx.fillRect(x, y, 52, 30);
+    ctx.strokeStyle = ready ? def.color : '#333';
+    ctx.lineWidth = ready ? 2 : 1;
+    ctx.strokeRect(x, y, 52, 30);
+
+    ctx.fillStyle = ready ? def.color : '#555';
+    ctx.font = 'bold 10px "Segoe UI", sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('[' + def.key + ']', x + 26, y + 13);
+
+    if (ready) {
+      ctx.fillStyle = '#44ff88';
+      ctx.font = 'bold 9px "Segoe UI", sans-serif';
+      ctx.fillText('READY', x + 26, y + 25);
+    } else {
+      const secs = Math.ceil(cd / 60);
+      ctx.fillStyle = '#888';
+      ctx.font = '9px "Segoe UI", sans-serif';
+      ctx.fillText(secs + 's', x + 26, y + 25);
+      ctx.fillStyle = def.color + '44';
+      ctx.fillRect(x + 1, y + 27, 50 * (1 - cd / maxCd), 2);
+    }
+    ctx.textAlign = 'start';
+  }
+}
+
+function drawAbilityEffects() {
+  if (abilityActiveTimers.timeWarp > 0) {
+    ctx.fillStyle = `rgba(50, 100, 255, ${0.08 + Math.sin(frameCount * 0.1) * 0.03})`;
+    ctx.fillRect(0, 0, W, H);
+    ctx.fillStyle = '#44ddff';
+    ctx.font = 'bold 12px "Segoe UI", sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('TIME WARP - ' + Math.ceil(abilityActiveTimers.timeWarp / 60) + 's', W / 2, H - 55);
+    ctx.textAlign = 'start';
+  }
+  if (orbitalStrikeTimer > 0) {
+    const progress = 1 - (orbitalStrikeTimer / 90);
+    const beamX = W * progress;
+    const alpha = Math.min(1, orbitalStrikeTimer / 30);
+    ctx.fillStyle = `rgba(255, 200, 50, ${0.3 * alpha})`;
+    ctx.fillRect(beamX - 40, 0, 80, H);
+    ctx.fillStyle = `rgba(255, 255, 200, ${0.6 * alpha})`;
+    ctx.fillRect(beamX - 10, 0, 20, H);
+    ctx.fillStyle = `rgba(255, 255, 255, ${0.8 * alpha})`;
+    ctx.fillRect(beamX - 3, 0, 6, H);
+  }
+}
+
+async function purchaseAbility(id) {
+  const def = ULTIMATE_ABILITIES[id];
+  if (!def || !currentUser) return;
+  if (hasAbility(id)) return;
+  if (currentUser.points < def.cost) return;
+  if (getPrestigeLevel() < def.requiredPrestige) return;
+  const data = await apiCall('/api/user/buyability', { abilityId: id });
+  if (data.user) {
+    currentUser = data.user;
+    updatePointsDisplay();
+    buildUpgradesPanel();
+  }
+}
+
+function showPrestigeModal() {
+  const prestige = getPrestigeLevel();
+  const cost = 10000 * (prestige + 1);
+  const nextPrestige = prestige + 1;
+  const currentBonus = getPrestigeBonus();
+  const nextBonus = 10 + (nextPrestige - 1) * 5;
+
+  let abilityUnlockText = '';
+  for (const [id, def] of Object.entries(ULTIMATE_ABILITIES)) {
+    if (def.requiredPrestige === nextPrestige) {
+      abilityUnlockText += `<li style="color:#ffaa44;">Unlocks <strong>${def.name}</strong> (${def.desc})</li>`;
+    }
+  }
+
+  const box = document.getElementById('prestigeModalBox');
+  box.innerHTML = `
+    <h2>\u2605 PRESTIGE ${nextPrestige}</h2>
+    <div class="prestige-warning">
+      \u26A0 WARNING: Prestiging will RESET all your upgrades and points!
+    </div>
+    <div class="prestige-benefits">
+      <h4>Benefits:</h4>
+      <ul>
+        <li>Permanent +${nextBonus}% move speed (was ${currentBonus}%)</li>
+        <li>Permanent +${nextBonus}% points gain (was ${currentBonus}%)</li>
+        ${abilityUnlockText}
+      </ul>
+    </div>
+    <div class="prestige-cost">Cost: ${cost.toLocaleString()} points</div>
+    <p style="font-size:12px; color:#667; margin-bottom:4px;">Current points: ${currentUser.points.toLocaleString()}</p>
+    <div class="prestige-modal-btns">
+      <button id="prestigeCancelBtn" onclick="hidePrestigeModal()">CANCEL</button>
+      <button id="prestigeConfirmBtn" onclick="confirmPrestige()">PRESTIGE UP</button>
+    </div>
+  `;
+  document.getElementById('prestigeModal').classList.remove('hidden');
+}
+
+function hidePrestigeModal() {
+  document.getElementById('prestigeModal').classList.add('hidden');
+}
+
+async function confirmPrestige() {
+  const data = await apiCall('/api/user/prestige', {});
+  if (data.user) {
+    currentUser = data.user;
+    updatePointsDisplay();
+    buildUpgradesPanel();
+    buildCheckpoints();
+    fetchPrestigeLeaderboard();
+    hidePrestigeModal();
+  } else if (data.error) {
+    alert(data.error);
+  }
+}
+
+async function fetchPrestigeLeaderboard() {
+  const data = await apiCall('/api/prestige/leaderboard');
+  if (data.leaderboard) buildPrestigeLeaderboard(data.leaderboard);
+}
+
+function buildPrestigeLeaderboard(entries) {
+  const list = document.getElementById('prestigeList');
+  if (!list) return;
+  if (entries.length === 0) {
+    list.innerHTML = '<div class="prestige-no-data">No prestige players yet</div>';
+    return;
+  }
+  list.innerHTML = entries.map((e, i) => `
+    <div class="prestige-entry">
+      <span class="rank">${i + 1}.</span>
+      <span class="name">${e.username}</span>
+      <span class="plevel">\u2605 ${e.prestige}</span>
+    </div>
+  `).join('');
+}
+
+async function resetCheckpointsAfterWave50() {
+  if (!currentUser) return;
+  const data = await apiCall('/api/user/resetcheckpoints', {});
+  if (data.user) {
+    currentUser = data.user;
+    startingWave = 1;
+    buildCheckpoints();
+  }
+}
+
 // ─── Input ─────────────────────────────────────────────────────
 const keys = {};
 function clearKeys() { for (const k in keys) keys[k] = false; }
 window.addEventListener('keydown', e => {
   keys[e.key] = true;
   if (['ArrowUp','ArrowDown','ArrowLeft','ArrowRight',' '].includes(e.key)) e.preventDefault();
+  if (gameRunning && !e.repeat) {
+    const k = e.key.toLowerCase();
+    if (k === 'q') activateAbility('novaBlast');
+    if (k === 'e') activateAbility('timeWarp');
+    if (k === 'r') activateAbility('orbitalStrike');
+  }
 });
 window.addEventListener('keyup', e => { keys[e.key] = false; });
 window.addEventListener('blur', clearKeys);
@@ -1196,7 +1788,8 @@ function drawPlayer() {
 }
 
 function updatePlayer() {
-  const spd = player.speed + getUpgradeLevel('moveSpeed') * 0.2;
+  const baseSpd = player.speed + getUpgradeLevel('moveSpeed') * 0.2;
+  const spd = baseSpd * (1 + getPrestigeBonus() / 100);
   if (keys['ArrowLeft']||keys['a']||keys['A']) player.x -= spd;
   if (keys['ArrowRight']||keys['d']||keys['D']) player.x += spd;
   if (keys['ArrowUp']||keys['w']||keys['W']) player.y -= spd;
@@ -1300,9 +1893,10 @@ function spawnWave() {
 
 // ─── Alien Update ─────────────────────────────────────────────
 function updateAliens() {
+  const twMult = (abilityActiveTimers.timeWarp > 0) ? 0.5 : 1;
   for (let i=aliens.length-1; i>=0; i--) {
     const a=aliens[i]; const t=ALIEN_TYPES[a.type];
-    a.y+=a.speed; a.time+=t.oscillationSpeed;
+    a.y+=a.speed*twMult; a.time+=t.oscillationSpeed*twMult;
     a.x=a.startX+Math.sin(a.time)*t.oscillation;
     if (a.canShoot) { a.shootTimer--; if (a.shootTimer<=0) { a.shootTimer=150+Math.floor(Math.random()*100); alienBullets.push({x:a.x,y:a.y+a.h/2,w:4,h:12,speed:2.8+wave*0.1}); } }
     if (a.y>H+20) { aliens.splice(i,1); loseLife(); }
@@ -1386,6 +1980,7 @@ function updateBoss() {
   if (!boss) return;
   if (bossWarningTimer > 0) { bossWarningTimer--; return; }
   const b = boss;
+  const bossTwMult = (abilityActiveTimers.timeWarp > 0) ? 0.5 : 1;
   b.time += 0.02;
   if (b.y < b.targetY) { b.y += 1.5; return; }
 
@@ -1436,7 +2031,7 @@ function updateBoss() {
 
   // Movement
   if (!b.tpActive && b.chgState !== 'charging') {
-    b.x += b.speed * b.moveDir;
+    b.x += b.speed * b.moveDir * bossTwMult;
     if (b.x > W - b.w / 2 - 20) b.moveDir = -1;
     if (b.x < b.w / 2 + 20) b.moveDir = 1;
   }
@@ -1805,9 +2400,11 @@ function checkBossCollisions() {
         if (bw === 50) {
           gameRunning = false;
           const pe = Math.max(1, Math.floor(score / 10));
+          const displayPe = Math.floor(pe * (1 + getPrestigeBonus() / 100));
           saveScore(pe);
+          resetCheckpointsAfterWave50();
           overlay.classList.remove('hidden');
-          overlay.innerHTML = '<h1 style="color:#ffcc44">VICTORY!</h1><div class="score-display">You defeated THE FINALE!</div><p style="color:#ffcc44">+' + pe + ' points earned!</p><p>Final Score: ' + score + '</p><button class="btn-primary" onclick="showMainMenu()">CONTINUE</button>';
+          overlay.innerHTML = '<h1 style="color:#ffcc44">VICTORY!</h1><div class="score-display">You defeated THE FINALE!</div><p style="color:#ffcc44">+' + displayPe + ' points earned!</p><p>Final Score: ' + score + '</p><button class="btn-primary" onclick="showMainMenu()">CONTINUE</button>';
         }
         return;
       }
@@ -1840,12 +2437,13 @@ function drawParticles(){for(const p of particles){ctx.globalAlpha=p.life/p.maxL
 function gameOver(){
   gameRunning=false;
   const pointsEarned = Math.max(1, Math.floor(score / 10));
+  const displayPts = Math.floor(pointsEarned * (1 + getPrestigeBonus() / 100));
   saveScore(pointsEarned);
   overlay.classList.remove('hidden');
   overlay.innerHTML=`
     <h1>GAME OVER</h1>
     <div class="score-display">FINAL SCORE: ${score}</div>
-    <p style="color:#ffcc44; font-size:16px; margin-bottom:8px;">+${pointsEarned} points earned!</p>
+    <p style="color:#ffcc44; font-size:16px; margin-bottom:8px;">+${displayPts} points earned!</p>
     <p>You reached Wave ${wave}</p>
     <button class="btn-primary" onclick="showMainMenu()">CONTINUE</button>
   `;
@@ -1858,6 +2456,9 @@ function startGame(){
   shootTimer=0; waveTimer=0; alienShootTimer=0; frameCount=0;
   activePowerups={rapidFire:0,multiShot:0,spreadShot:0};
   savedCheckpoints=new Set();
+  abilityCooldowns = { novaBlast: 0, timeWarp: 0, orbitalStrike: 0 };
+  abilityActiveTimers = { timeWarp: 0 };
+  orbitalStrikeTimer = 0;
   // Only re-introduce enemy types that appear before startingWave
   introducedTypes={};
   for (const typeName in ALIEN_TYPES) {
@@ -1882,11 +2483,12 @@ function gameLoop(){
   if(gameRunning){
     frameCount++;
     updatePlayer(); updateBullets(); updateAliens(); updateBoss();
-    updateAlienBullets(); updatePowerups();
+    updateAlienBullets(); updatePowerups(); updateAbilities();
     checkCollisions(); checkBossCollisions();
     updateParticles(); updateInfoBox();
     drawBullets(); drawAlienBullets(); drawAliens(); drawBoss();
     drawPowerups(); drawPlayer(); drawParticles(); drawPowerupHUD();
+    drawAbilityHUD(); drawAbilityEffects();
   }
   requestAnimationFrame(gameLoop);
 }

@@ -1,7 +1,7 @@
 {
-  "name": "alien-shooter",
-  "version": "1.0.0",
-  "description": "Alien Shooter game with persistent user data",
+  "name": "nova-shooter",
+  "version": "1.2.0",
+  "description": "Alien shooter game with persistent user data, upgrades, abilities, and prestige system.",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
