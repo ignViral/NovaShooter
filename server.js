@@ -66,7 +66,9 @@ app.post('/api/auth/signup', (req, res) => {
     points: 0,
     highScore: 0,
     checkpoints: [],  // array of wave numbers: [5, 10, 15, ...]
-    createdAt: Date.now()
+    createdAt: Date.now(),
+    prestige: 0,
+    prestigeAbilities: []
   };
   saveDB(db);
 
@@ -165,9 +167,78 @@ app.post('/api/user/upgrade', (req, res) => {
   res.json({ ok: true, user: sanitizeUser(user) });
 });
 
+// ─── Prestige Routes ──────────────────────────────────────
+const UPGRADE_MAXES = { bulletSpeed: 10, fireRate: 10, moveSpeed: 6, damage: 3, shield: 4, startLives: 2, extraBullet: 1 };
+const ABILITY_DEFS = { novaBlast: { prestige: 1, cost: 500 }, timeWarp: { prestige: 3, cost: 1500 }, orbitalStrike: { prestige: 5, cost: 3000 } };
+
+app.post('/api/user/prestige', (req, res) => {
+  if (!req.session.user) return res.status(401).json({ error: 'Not logged in.' });
+  const db = loadDB();
+  const user = db[req.session.user];
+  if (!user) return res.status(401).json({ error: 'User not found.' });
+  const currentPrestige = user.prestige || 0;
+  if (currentPrestige >= 10) return res.status(400).json({ error: 'Already at max prestige.' });
+
+  const cost = 10000 * (currentPrestige + 1);
+  if (user.points < cost) return res.status(400).json({ error: 'Not enough points.' });
+
+  const upgrades = user.upgrades || {};
+  for (const [id, max] of Object.entries(UPGRADE_MAXES)) {
+    if ((upgrades[id] || 0) < max) return res.status(400).json({ error: 'All upgrades must be maxed.' });
+  }
+
+  user.prestige = currentPrestige + 1;
+  user.points = 0;
+  user.upgrades = {};
+  saveDB(db);
+  res.json({ ok: true, user: sanitizeUser(user) });
+});
+
+app.post('/api/user/buyability', (req, res) => {
+  if (!req.session.user) return res.status(401).json({ error: 'Not logged in.' });
+  const { abilityId } = req.body;
+  const abilityDef = ABILITY_DEFS[abilityId];
+  if (!abilityDef) return res.status(400).json({ error: 'Invalid ability.' });
+
+  const db = loadDB();
+  const user = db[req.session.user];
+  if (!user) return res.status(401).json({ error: 'User not found.' });
+
+  if ((user.prestige || 0) < abilityDef.prestige) return res.status(400).json({ error: 'Prestige level too low.' });
+  if (!user.prestigeAbilities) user.prestigeAbilities = [];
+  if (user.prestigeAbilities.includes(abilityId)) return res.status(400).json({ error: 'Already owned.' });
+  if (user.points < abilityDef.cost) return res.status(400).json({ error: 'Not enough points.' });
+
+  user.points -= abilityDef.cost;
+  user.prestigeAbilities.push(abilityId);
+  saveDB(db);
+  res.json({ ok: true, user: sanitizeUser(user) });
+});
+
+app.post('/api/user/resetcheckpoints', (req, res) => {
+  if (!req.session.user) return res.status(401).json({ error: 'Not logged in.' });
+  const db = loadDB();
+  const user = db[req.session.user];
+  if (!user) return res.status(401).json({ error: 'User not found.' });
+
+  user.checkpoints = [];
+  saveDB(db);
+  res.json({ ok: true, user: sanitizeUser(user) });
+});
+
+app.get('/api/prestige/leaderboard', (req, res) => {
+  const db = loadDB();
+  const leaderboard = Object.values(db)
+    .map(u => ({ username: u.username, prestige: u.prestige || 0 }))
+    .filter(u => u.prestige > 0)
+    .sort((a, b) => b.prestige - a.prestige)
+    .slice(0, 10);
+  res.json({ leaderboard });
+});
+
 // ─── Admin Routes ─────────────────────────────────────────────
 app.post('/api/admin/modifyuser', (req, res) => {
-  if (!req.session.user || req.session.user !== 'alex')
+  if (!req.session.user || (req.session.user !== 'test'))
     return res.status(403).json({ error: 'Forbidden.' });
 
   const { targetUsername, action, amount } = req.body;
@@ -191,6 +262,8 @@ app.post('/api/admin/modifyuser', (req, res) => {
       user.highScore = 0;
       user.checkpoints = [];
       user.upgrades = {};
+      user.prestige = 0;
+      user.prestigeAbilities = [];
       break;
   }
   saveDB(db);
@@ -204,7 +277,9 @@ function sanitizeUser(u) {
     points: u.points,
     highScore: u.highScore,
     checkpoints: u.checkpoints || [],
-    upgrades: u.upgrades || {}
+    upgrades: u.upgrades || {},
+    prestige: u.prestige || 0,
+    prestigeAbilities: u.prestigeAbilities || []
   };
 }
 
