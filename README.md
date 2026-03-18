@@ -25,13 +25,28 @@ Prestiging will immediately reset your points and upgrades, but comes with a var
 - You gain a permanent +10% point boost as well as a +10% speed boost
   - These increase by 5% for every prestige after the first
 - You unlock ultimate abilities
-  - Purchasable for points in the regular shop, these are special powerful abilities unlocked at prestige 1, 3, and 5.
+  - Purchasable for points in the Challenge shop, these are special powerful abilities unlocked at prestige 1, 3, and 5.
     - ✦ **Nova Blast:** Destroys all regular enemies on screen (does not work on bosses)
     - ✦ **Time Warp:** Slows all enemies by 50% for 8 seconds
     - ✦ **Orbital Strike:** Channels a massive beam that deals heavy damage to enemies in its path
   - Once purchased with points, these all have separate hotkeys and can be used simultaneously. They each have a 60 second cooldown to recharge before each use.
 
-The maximum prestige is **Prestige 10**.
+The maximum prestige is **Prestige 10**. Prestiging also unlocks Challenges!
+
+## 💀 Challenge Runs
+
+Once you reach Prestige 1, you unlock Challenge Runs. These are hardcore playthroughs with no checkpoints and zero reward if you die before defeating the final boss.
+
+Before starting your run, you add Challenge Modifiers, each which have levels:
+- Enemy Health
+- Enemy Variety
+- Enemy Speed
+- Enemy Damage
+
+For each level of each modifier you add, should you conquer the challenge run, you will receive +1 Challenge Point. These can be spent on:
+- Cosmetics
+- Ultimate Abilities (& their upgrades)
+- Permanent Regular Abilities
 
 ## 🔥 Admin Panel
 
