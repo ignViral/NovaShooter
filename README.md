@@ -25,13 +25,14 @@ Prestiging will immediately reset your points and upgrades, but comes with a var
 - You gain a permanent +10% point boost as well as a +10% speed boost
   - These increase by 5% for every prestige after the first
 - You unlock ultimate abilities
-  - Purchasable for points in the Challenge shop, these are special powerful abilities unlocked at prestige 1, 3, and 5.
+  - Purchasable for challenge points in the Challenge shop, these are special powerful abilities unlocked at prestige 1, 3, and 5.
     - ✦ **Nova Blast:** Destroys all regular enemies on screen (does not work on bosses)
     - ✦ **Time Warp:** Slows all enemies by 75% for 8 seconds
     - ✦ **Orbital Strike:** Channels a massive beam that deals heavy damage to enemies in its path
-  - Once purchased with points, these all have separate hotkeys and can be used simultaneously. They each have a 60 second cooldown to recharge before each use.
+  - Once purchased with challenge points, these all have separate hotkeys and can be used simultaneously. They each have a 60 second cooldown to recharge before each use.
+  - Each ultimate ability has an associated upgrade in the Challenge Store that either increases their duration or shortens their cooldown.
 
-The maximum prestige is **Prestige 10**. Prestiging also unlocks Challenges!
+The maximum prestige is **Prestige 10**. Prestiging also unlocks Challenge Runs!
 
 ## 💀 Challenge Runs
 
@@ -47,6 +48,8 @@ For each level of each modifier you add, should you conquer the challenge run, y
 - Cosmetics
 - Ultimate Abilities (& their upgrades)
 - Permanent Regular Abilities
+
+**☠️ All bosses are Enraged in Challenge Runs, granting them increased health, new abilities, and higher speeds!**
 
 ## 🔥 Admin Panel
 
@@ -87,7 +90,7 @@ The real goals of this project were to:
 1. Just create a cool game that takes the core gameplay loop of an alien shooter and expands it
 2. Experiment with using AI in game design and website coding as a whole to see the quality of the content it generates
 
-The game did not take a very long amount of time to create (apart from brainstorming) using Anthropic's Claude Opus 4.5 and 4.6 models.
+The initial prototype for the game did not take a very long amount of time to create (apart from brainstorming) using Anthropic's Claude Opus 4.5 and 4.6 models.
 
 ## 🎉 The End
 That's all for now! Thanks for reading, and enjoy the game!
