@@ -957,6 +957,197 @@
       color: #445;
       cursor: default;
     }
+
+    /* ─── Challenge Runs ────────────────────────────── */
+    .challenge-run-button {
+      display: block;
+      width: 100%;
+      padding: 10px 8px;
+      margin: 10px 0 6px;
+      background: linear-gradient(135deg, rgba(200,30,30,0.3), rgba(120,0,0,0.3));
+      border: 1px solid #cc3333;
+      border-radius: 6px;
+      color: #ff4444;
+      font: bold 11px 'Segoe UI', sans-serif;
+      letter-spacing: 2px;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: center;
+    }
+    .challenge-run-button:hover:not(.locked) {
+      background: linear-gradient(135deg, rgba(200,30,30,0.5), rgba(160,0,0,0.4));
+      transform: scale(1.03);
+      text-shadow: 0 0 8px #ff4444;
+    }
+    .challenge-run-button.locked {
+      background: linear-gradient(135deg, rgba(80,80,80,0.3), rgba(50,50,50,0.3));
+      color: #666;
+      border-color: #444;
+      cursor: default;
+      text-shadow: none;
+    }
+
+    #challengeModal {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.85);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 2000;
+    }
+    #challengeModal.hidden { display: none; }
+    #challengeModalBox {
+      background: linear-gradient(145deg, #12122a, #1a1a35);
+      border: 2px solid #cc3333;
+      border-radius: 14px;
+      padding: 24px 28px;
+      max-width: 480px;
+      width: 90%;
+      max-height: 85vh;
+      overflow-y: auto;
+      color: #ccd;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    #challengeModalBox h2 {
+      color: #ff4444;
+      margin: 0 0 14px;
+      font-size: 20px;
+      letter-spacing: 3px;
+      text-align: center;
+    }
+    .challenge-tabs {
+      display: flex; gap: 6px; margin-bottom: 14px;
+    }
+    .challenge-tab {
+      flex: 1; padding: 8px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid #333;
+      border-radius: 6px;
+      color: #778;
+      font: bold 11px 'Segoe UI', sans-serif;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .challenge-tab.active {
+      background: rgba(200,30,30,0.2);
+      border-color: #cc3333;
+      color: #ff6644;
+    }
+    .challenge-tab:hover:not(.active) {
+      background: rgba(255,255,255,0.08);
+      color: #aab;
+    }
+    .modifier-row {
+      background: rgba(255,255,255,0.03);
+      border-radius: 8px;
+      padding: 10px 12px;
+      margin-bottom: 8px;
+    }
+    .mod-header {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 6px;
+    }
+    .mod-name { color: #dde; font-weight: 700; font-size: 12px; }
+    .mod-desc { color: #667; font-size: 10px; }
+    .mod-levels { display: flex; gap: 4px; margin-top: 6px; }
+    .mod-btn {
+      width: 30px; height: 24px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid #333;
+      border-radius: 4px;
+      color: #667;
+      font: bold 11px 'Segoe UI', sans-serif;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .mod-btn.active {
+      background: rgba(200,50,50,0.4);
+      border-color: #cc4444;
+      color: #ff6644;
+    }
+    .mod-btn:hover:not(.active) {
+      background: rgba(255,255,255,0.12);
+      color: #aab;
+    }
+    .challenge-summary {
+      background: rgba(200,50,50,0.1);
+      border: 1px solid #662222;
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin: 12px 0;
+      font-size: 12px;
+      line-height: 1.8;
+    }
+    .challenge-summary strong { color: #ff6644; }
+    .mod-warning { color: #ff6644; font-weight: 700; margin-top: 4px; }
+    .challenge-warning {
+      color: #ff4444;
+      font-size: 11px;
+      text-align: center;
+      padding: 8px;
+      border: 1px solid #442222;
+      border-radius: 6px;
+      background: rgba(200,0,0,0.08);
+      margin-bottom: 12px;
+    }
+    .cs-balance {
+      text-align: center;
+      font: bold 16px 'Segoe UI', sans-serif;
+      color: #ff6644;
+      margin-bottom: 14px;
+      padding: 8px;
+      background: rgba(200,50,50,0.1);
+      border-radius: 8px;
+    }
+    .cs-section-title {
+      color: #ffaa44;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin: 14px 0 8px;
+      padding-bottom: 4px;
+      border-bottom: 1px solid #1a1a3a;
+    }
+    .challenge-shop-item {
+      background: rgba(255,255,255,0.03);
+      border-radius: 8px;
+      padding: 10px 12px;
+      margin-bottom: 6px;
+    }
+    .challenge-shop-item.locked { opacity: 0.5; }
+    .cs-header {
+      display: flex; align-items: center; gap: 8px;
+      margin-bottom: 4px;
+    }
+    .cs-name { color: #dde; font-weight: 700; font-size: 12px; flex: 1; }
+    .cs-desc { color: #778; font-size: 10px; margin-bottom: 8px; }
+    .cs-buy-btn {
+      display: block; width: 100%;
+      padding: 6px 12px;
+      border: 1px solid #333;
+      border-radius: 5px;
+      font: bold 10px 'Segoe UI', sans-serif;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .cs-buy-btn.buy {
+      background: linear-gradient(135deg, rgba(200,50,50,0.3), rgba(160,30,30,0.2));
+      border-color: #cc4444;
+      color: #ff6644;
+    }
+    .cs-buy-btn.buy:hover:not(:disabled) {
+      background: linear-gradient(135deg, rgba(200,50,50,0.5), rgba(160,30,30,0.4));
+    }
+    .cs-buy-btn.owned {
+      background: rgba(50,200,100,0.15);
+      border-color: #44aa66;
+      color: #44ff88;
+    }
+    .cs-buy-btn.locked-btn, .cs-buy-btn:disabled:not(.owned) {
+      background: #1a1a2a;
+      color: #445;
+      cursor: default;
+    }
   </style>
 </head>
 <body>
@@ -984,6 +1175,7 @@
   <div id="spacePathPanel">
     <h3>Checkpoints</h3>
     <div id="pathContainer"></div>
+    <button id="challengeRunBtn" class="challenge-run-button locked" onclick="handleChallengeBtn()">&#9760; CHALLENGE RUNS</button>
     <div id="prestigeSection">
       <h3>&#9733; Prestige Board</h3>
       <div id="prestigeList"></div>
@@ -1036,10 +1228,12 @@
   <div id="adminPanel" class="hidden">
     <h3>ADMIN PANEL</h3>
     <input type="text" id="adminTarget" placeholder="Target username..." />
-    <input type="number" id="adminAmount" placeholder="Amount (for points)" />
+    <input type="number" id="adminAmount" placeholder="Amount (for pts/C$)" />
     <div class="admin-btns">
       <button onclick="adminAction('addPoints')">Add Points</button>
       <button onclick="adminAction('removePoints')">Remove Points</button>
+      <button onclick="adminAction('addChallengePoints')">Add C$</button>
+      <button onclick="adminAction('removeChallengePoints')">Remove C$</button>
       <button onclick="adminAction('resetUpgrades')">Reset Upgrades</button>
       <button class="danger" onclick="adminAction('resetAccount')">Reset Account</button>
     </div>
@@ -1050,6 +1244,11 @@
   <!-- Prestige Modal -->
   <div id="prestigeModal" class="hidden">
     <div id="prestigeModalBox"></div>
+  </div>
+
+  <!-- Challenge Modal -->
+  <div id="challengeModal" class="hidden">
+    <div id="challengeModalBox"></div>
   </div>
 
   <!-- Upgrades Panel -->
@@ -1089,11 +1288,16 @@ let startingWave = 1;   // which wave to begin from (checkpoint)
 
 // ─── Auth System ──────────────────────────────────────────────
 async function apiCall(url, body) {
-  const opts = body
-    ? { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) }
-    : { method: 'GET' };
-  const res = await fetch(url, opts);
-  return res.json();
+  try {
+    const opts = body
+      ? { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) }
+      : { method: 'GET' };
+    const res = await fetch(url, opts);
+    return res.json();
+  } catch (err) {
+    console.error('API call failed:', url, err);
+    return { error: 'Network error. Please try again.' };
+  }
 }
 
 async function tryAutoLogin() {
@@ -1118,6 +1322,8 @@ function loginSuccess(user) {
   buildCheckpoints();
   buildUpgradesPanel();
   fetchPrestigeLeaderboard();
+  const challengeBtn = document.getElementById('challengeRunBtn');
+  if (challengeBtn) challengeBtn.classList.toggle('locked', getPrestigeLevel() < 1);
   // Show admin button
   if (user.username.toLowerCase() === 'test') {
     document.getElementById('adminBtn').style.display = 'block';
@@ -1128,7 +1334,8 @@ function loginSuccess(user) {
 function updatePointsDisplay() {
   const pts = currentUser ? currentUser.points : 0;
   const prestige = getPrestigeLevel();
-  pointsDisplay.textContent = 'POINTS: ' + pts + (prestige > 0 ? '  \u2605P' + prestige : '');
+  const cp = currentUser ? (currentUser.challengePoints || 0) : 0;
+  pointsDisplay.textContent = 'POINTS: ' + pts + (prestige > 0 ? '  \u2605P' + prestige : '') + (cp > 0 ? '  \u2620' + cp + 'C$' : '');
 }
 
 document.getElementById('btnSignup').addEventListener('click', async () => {
@@ -1227,7 +1434,7 @@ function showMainMenu() {
 
 // ─── Save checkpoint to server ────────────────────────────────
 async function saveCheckpoint(waveNum) {
-  if (!currentUser) return;
+  if (!currentUser || challengeRunActive) return;
   const data = await apiCall('/api/user/checkpoint', { wave: waveNum });
   if (data.user) {
     currentUser = data.user;
@@ -1278,6 +1485,7 @@ let waveTimer = 0;
 let alienShootTimer = 0;
 let frameCount = 0;
 
+let mines = [];
 let activePowerups = { rapidFire: 0, multiShot: 0, spreadShot: 0 };
 let introducedTypes = {};
 let infoBoxTimer = 0;
@@ -1285,6 +1493,12 @@ let savedCheckpoints = new Set();
 let abilityCooldowns = { novaBlast: 0, timeWarp: 0, orbitalStrike: 0 };
 let abilityActiveTimers = { timeWarp: 0 };
 let orbitalStrikeTimer = 0;
+let orbitalStrikeAllHit = false;
+let orbitalStrikeExtended = false;
+
+let challengeRunActive = false;
+let challengeModifiers = { enemySpeed: 0, enemyDamage: 0, enemyVariety: 0, enemyHealth: 0 };
+let preChallengeStartWave = 1;
 
 // ─── Alien Types ──────────────────────────────────────────────
 const ALIEN_TYPES = {
@@ -1319,6 +1533,70 @@ const ALIEN_TYPES = {
     introWave: 12,
     displayName: 'Tank',
     description: 'Heavy armor plating absorbs multiple hits. Slow but very tough to destroy.'
+  },
+  splitter: {
+    hp: 3, speed: 0.35, w: 38, h: 34, score: 25,
+    color1: '#33cc99', color2: '#66ffcc', eyeColor: '#ff44ff',
+    oscillation: 35, oscillationSpeed: 0.03,
+    introWave: 10,
+    displayName: 'Splitter',
+    description: 'Splits into two smaller aliens when destroyed. Kill it twice to finish it off!'
+  },
+  dodger: {
+    hp: 1, speed: 0.6, w: 30, h: 26, score: 20,
+    color1: '#6644aa', color2: '#9966ff', eyeColor: '#00ffcc',
+    oscillation: 55, oscillationSpeed: 0.04,
+    introWave: 15,
+    displayName: 'Phantom',
+    description: 'Phases in and out of reality. Immune to damage while transparent!'
+  },
+  shielder: {
+    hp: 2, speed: 0.3, w: 40, h: 36, score: 35,
+    color1: '#2288aa', color2: '#44ccee', eyeColor: '#ffaa00',
+    oscillation: 30, oscillationSpeed: 0.025,
+    introWave: 20,
+    displayName: 'Guardian',
+    description: 'Frontal energy shield blocks direct hits. Aim for the sides to deal damage!'
+  },
+  bomber: {
+    hp: 2, speed: 0.45, w: 32, h: 28, score: 30,
+    color1: '#aa3322', color2: '#ff5544', eyeColor: '#ffff44',
+    oscillation: 40, oscillationSpeed: 0.035,
+    introWave: 25,
+    displayName: 'Bomber',
+    description: 'Drops proximity mines as it descends. Watch your step!'
+  },
+  warper: {
+    hp: 4, speed: 0.2, w: 42, h: 40, score: 50,
+    color1: '#884488', color2: '#cc66cc', eyeColor: '#ff0066',
+    oscillation: 20, oscillationSpeed: 0.02,
+    introWave: 30,
+    displayName: 'Warper',
+    description: 'Teleports to a new position and fires a burst of aimed shots. Tough and unpredictable!'
+  },
+  juggernaut: {
+    hp: 6, speed: 0.2, w: 48, h: 44, score: 45,
+    color1: '#555555', color2: '#888888', eyeColor: '#ff0000',
+    oscillation: 10, oscillationSpeed: 0.01,
+    introWave: 0, challengeOnly: true,
+    displayName: 'Juggernaut',
+    description: 'Massive armored beast. Extremely tough and occasionally charges forward!'
+  },
+  stalker: {
+    hp: 2, speed: 0.7, w: 26, h: 24, score: 30,
+    color1: '#003322', color2: '#00ff88', eyeColor: '#ff3300',
+    oscillation: 0, oscillationSpeed: 0,
+    introWave: 0, challengeOnly: true,
+    displayName: 'Stalker',
+    description: 'Tracks your position and darts toward you. Fast and relentless!'
+  },
+  inferno: {
+    hp: 3, speed: 0.35, w: 34, h: 30, score: 40,
+    color1: '#aa2200', color2: '#ff6600', eyeColor: '#ffff00',
+    oscillation: 35, oscillationSpeed: 0.03,
+    introWave: 0, challengeOnly: true,
+    displayName: 'Inferno',
+    description: 'Burns with intense heat. Fires devastating spread bursts of plasma!'
   }
 };
 
@@ -1342,6 +1620,7 @@ function updateInfoBox() {
 }
 
 // ─── Powerup Definitions ─────────────────────────────────────
+const POWERUP_DURATION = 480; // 8 seconds at 60fps
 const POWERUP_TYPES = {
   rapidFire:  { color: '#ffdd33', glow: '#ffaa00', label: '\u26A1', duration: 480 },
   multiShot:  { color: '#33aaff', glow: '#2266ff', label: '\u2AF8', duration: 480 },
@@ -1351,13 +1630,13 @@ const POWERUP_TYPES = {
 
 // ─── Upgrade Definitions ─────────────────────────────────────
 const UPGRADES = {
-  bulletSpeed: { name: 'Bullet Velocity', desc: '+0.3 bullet speed / lvl', icon: '\u25B2', maxLevel: 10, baseCost: 40, costScale: 1.5, color: '#33aaff' },
-  fireRate:    { name: 'Fire Rate', desc: 'Shoot 3% faster / lvl', icon: '\u26A1', maxLevel: 10, baseCost: 50, costScale: 1.5, color: '#ffdd33' },
-  moveSpeed:   { name: 'Thruster', desc: '+0.2 move speed / lvl', icon: '\u00BB', maxLevel: 6, baseCost: 30, costScale: 1.5, color: '#44ffaa' },
-  damage:      { name: 'Firepower', desc: '+1 bullet damage / lvl', icon: '\u2726', maxLevel: 3, baseCost: 150, costScale: 2.0, color: '#ff6644' },
-  shield:      { name: 'Shield', desc: '+10 invincibility frames / lvl', icon: '\u25C6', maxLevel: 4, baseCost: 50, costScale: 1.8, color: '#aa66ff' },
-  startLives:  { name: 'Extra Lives', desc: '+1 starting life / lvl', icon: '\u2665', maxLevel: 2, baseCost: 200, costScale: 2.5, color: '#ff4466' },
-  extraBullet: { name: 'Center Cannon', desc: '+1 base bullet (center)', icon: '\u2742', maxLevel: 1, baseCost: 800, costScale: 1, color: '#ffaaff' }
+  bulletSpeed: { name: 'Bullet Velocity', desc: '+0.3 bullet speed / lvl', icon: '\u25B2', maxLevel: 10, baseCost: 80, costScale: 1.5, color: '#33aaff' },
+  fireRate:    { name: 'Fire Rate', desc: 'Shoot 3% faster / lvl', icon: '\u26A1', maxLevel: 10, baseCost: 100, costScale: 1.5, color: '#ffdd33' },
+  moveSpeed:   { name: 'Thruster', desc: '+0.2 move speed / lvl', icon: '\u00BB', maxLevel: 6, baseCost: 60, costScale: 1.5, color: '#44ffaa' },
+  damage:      { name: 'Firepower', desc: '+1 bullet damage / lvl', icon: '\u2726', maxLevel: 3, baseCost: 300, costScale: 2.0, color: '#ff6644' },
+  shield:      { name: 'Shield', desc: '+10 invincibility frames / lvl', icon: '\u25C6', maxLevel: 4, baseCost: 100, costScale: 1.8, color: '#aa66ff' },
+  startLives:  { name: 'Extra Lives', desc: '+1 starting life / lvl', icon: '\u2665', maxLevel: 2, baseCost: 400, costScale: 2.5, color: '#ff4466' },
+  extraBullet: { name: 'Center Cannon', desc: '+1 base bullet (center)', icon: '\u2742', maxLevel: 1, baseCost: 1600, costScale: 1, color: '#ffaaff' }
 };
 
 function getUpgradeLevel(id) {
@@ -1372,9 +1651,22 @@ function getUpgradeCost(id) {
 }
 
 const ULTIMATE_ABILITIES = {
-  novaBlast: { name: 'Nova Blast', desc: 'Destroys all regular enemies on screen', key: 'Q', cost: 500, cooldown: 3600, requiredPrestige: 1, color: '#ff6644' },
-  timeWarp: { name: 'Time Warp', desc: 'Slows all enemies by 50% for 8 seconds', key: 'E', cost: 1500, cooldown: 2700, requiredPrestige: 3, color: '#44ddff' },
-  orbitalStrike: { name: 'Orbital Strike', desc: 'Massive beam deals heavy damage to all enemies', key: 'R', cost: 3000, cooldown: 5400, requiredPrestige: 5, color: '#ffaa00' }
+  novaBlast: { name: 'Nova Blast', desc: 'Destroys all regular enemies on screen', key: 'Q', cost: 5, cooldown: 3600, requiredPrestige: 1, color: '#ff6644' },
+  timeWarp: { name: 'Time Warp', desc: 'Slows enemies & bullets by 75% for 10s', key: 'E', cost: 7, cooldown: 2400, requiredPrestige: 3, color: '#44ddff' },
+  orbitalStrike: { name: 'Orbital Strike', desc: 'Massive beam deals heavy damage to all enemies', key: 'R', cost: 10, cooldown: 5400, requiredPrestige: 5, color: '#ffaa00' }
+};
+
+const CHALLENGE_SHOP_ITEMS = {
+  novaBlast: { name: 'Nova Blast', desc: 'Destroys all regular enemies on screen', key: 'Q', cost: 5, requiredPrestige: 1, category: 'ability', color: '#ff6644' },
+  novaBlastUpgrade: { name: 'Nova Blast+', desc: 'Kills reduce cooldown by 1s while on cooldown', cost: 10, requiredPrestige: 1, category: 'ability', color: '#ff6644', requiresOwned: 'novaBlast' },
+  timeWarp: { name: 'Time Warp', desc: 'Slows enemies & bullets by 75% for 10s', key: 'E', cost: 7, requiredPrestige: 3, category: 'ability', color: '#44ddff' },
+  timeWarpUpgrade: { name: 'Time Warp+', desc: 'Instantly recharges 1.5s per enemy frozen', cost: 10, requiredPrestige: 3, category: 'ability', color: '#44ddff', requiresOwned: 'timeWarp' },
+  orbitalStrike: { name: 'Orbital Strike', desc: 'Massive beam deals heavy damage to all enemies', key: 'R', cost: 10, requiredPrestige: 5, category: 'ability', color: '#ffaa00' },
+  orbitalStrikeUpgrade: { name: 'Orbital Strike+', desc: 'Beam extends 3s if hitting enemies throughout', cost: 10, requiredPrestige: 5, category: 'ability', color: '#ffaa00', requiresOwned: 'orbitalStrike' },
+  wingmanCannons: { name: 'Wingman Cannons', desc: '+2 extra side bullets permanently', cost: 10, requiredPrestige: 1, category: 'upgrade', color: '#ff88ff' },
+  reinforcedHull: { name: 'Reinforced Hull', desc: '+1 starting life permanently', cost: 7, requiredPrestige: 1, category: 'upgrade', color: '#ff4466' },
+  rapidPlasma: { name: 'Rapid Plasma', desc: '+15% fire rate permanently', cost: 7, requiredPrestige: 1, category: 'upgrade', color: '#ffdd33' },
+  championCrown: { name: "Champion's Crown", desc: 'A golden crown for your ship', cost: 25, requiredPrestige: 1, category: 'cosmetic', color: '#ffcc00' }
 };
 
 function getPrestigeBonus() {
@@ -1391,7 +1683,13 @@ function allUpgradesMaxed() {
   return true;
 }
 function hasAbility(id) {
-  return currentUser && currentUser.prestigeAbilities && currentUser.prestigeAbilities.includes(id);
+  if (!currentUser) return false;
+  return (currentUser.prestigeAbilities && currentUser.prestigeAbilities.includes(id)) ||
+         (currentUser.challengeShopPurchases && currentUser.challengeShopPurchases.includes(id));
+}
+function hasChallengePurchase(id) {
+  if (!currentUser) return false;
+  return currentUser.challengeShopPurchases && currentUser.challengeShopPurchases.includes(id);
 }
 
 function buildUpgradesPanel() {
@@ -1430,43 +1728,11 @@ function buildUpgradesPanel() {
     btn.addEventListener('click', () => purchaseUpgrade(btn.dataset.id));
   });
 
-  const prestige = getPrestigeLevel();
-  if (prestige > 0) {
-    const abilTitle = document.createElement('div');
-    abilTitle.className = 'ability-section-title';
-    abilTitle.textContent = '\u2605 Ultimate Abilities';
-    upgradesContainer.appendChild(abilTitle);
-    for (const [id, def] of Object.entries(ULTIMATE_ABILITIES)) {
-      const locked = prestige < def.requiredPrestige;
-      const owned = hasAbility(id);
-      const canBuy = !locked && !owned && currentUser && currentUser.points >= def.cost;
-      const item = document.createElement('div');
-      item.className = 'ability-item' + (locked ? ' locked' : '');
-      item.innerHTML = `
-        <div class="ability-header">
-          <span class="ability-icon" style="color:${def.color};">\u2726</span>
-          <span class="ability-name">${def.name}</span>
-          <span class="ability-key">${def.key}</span>
-        </div>
-        <div class="ability-desc">${def.desc}</div>
-        <button class="ability-buy-btn ${owned ? 'owned' : locked ? 'locked-btn' : 'buy'}"
-                data-ability="${id}"
-                ${(!canBuy && !owned) ? 'disabled' : (owned ? 'disabled' : '')}>
-          ${owned ? '\u2713 OWNED' : locked ? 'Prestige ' + def.requiredPrestige + ' Required' : 'BUY \u2014 ' + def.cost + ' pts'}
-        </button>
-      `;
-      upgradesContainer.appendChild(item);
-    }
-    upgradesContainer.querySelectorAll('.ability-buy-btn.buy:not(:disabled)').forEach(btn => {
-      btn.addEventListener('click', () => purchaseAbility(btn.dataset.ability));
-    });
-  }
-
   const prestigeLevel = getPrestigeLevel();
   if (prestigeLevel < 10) {
     const wrap = document.createElement('div');
     wrap.className = 'prestige-btn-wrap';
-    const cost = 10000 * (prestigeLevel + 1);
+    const cost = 20000 * (prestigeLevel + 1);
     const maxed = allUpgradesMaxed();
     const canPrestige = maxed && currentUser && currentUser.points >= cost;
     if (prestigeLevel > 0) {
@@ -1513,20 +1779,32 @@ function activateAbility(id) {
 
   switch (id) {
     case 'novaBlast': {
+      const nbKills = aliens.length;
       for (const a of aliens) {
         const t = ALIEN_TYPES[a.type];
         score += t.score * Math.ceil(wave / 2);
         spawnExplosion(a.x, a.y);
       }
       aliens = [];
+      if (hasChallengePurchase('novaBlastUpgrade') && abilityCooldowns.novaBlast > 0 && nbKills > 0) {
+        abilityCooldowns.novaBlast = Math.max(0, abilityCooldowns.novaBlast - nbKills * 60);
+      }
       hudScore.textContent = 'SCORE: ' + score;
       break;
     }
-    case 'timeWarp':
-      abilityActiveTimers.timeWarp = 480;
+    case 'timeWarp': {
+      abilityActiveTimers.timeWarp = 600;
+      if (hasChallengePurchase('timeWarpUpgrade')) {
+        const frozenCount = aliens.length + (boss ? 1 : 0);
+        abilityCooldowns.timeWarp = Math.max(0, abilityCooldowns.timeWarp - frozenCount * 90);
+      }
       break;
+    }
     case 'orbitalStrike': {
       orbitalStrikeTimer = 90;
+      orbitalStrikeAllHit = true;
+      orbitalStrikeExtended = false;
+      let osKills = 0;
       for (let i = aliens.length - 1; i >= 0; i--) {
         aliens[i].hp -= 10;
         spawnHitParticles(aliens[i].x, aliens[i].y, '#ffaa00');
@@ -1535,6 +1813,7 @@ function activateAbility(id) {
           score += t.score * Math.ceil(wave / 2);
           spawnExplosion(aliens[i].x, aliens[i].y);
           aliens.splice(i, 1);
+          osKills++;
         }
       }
       if (boss && !boss.shielded && !boss.invuln) {
@@ -1542,6 +1821,9 @@ function activateAbility(id) {
         boss.hp -= dmg;
         spawnHitParticles(boss.x, boss.y, '#ffaa00');
         if (boss.hp <= 0) boss.hp = 1;
+      }
+      if (hasChallengePurchase('novaBlastUpgrade') && abilityCooldowns.novaBlast > 0 && osKills > 0) {
+        abilityCooldowns.novaBlast = Math.max(0, abilityCooldowns.novaBlast - osKills * 60);
       }
       hudScore.textContent = 'SCORE: ' + score;
       break;
@@ -1554,7 +1836,35 @@ function updateAbilities() {
     if (abilityCooldowns[id] > 0) abilityCooldowns[id]--;
   }
   if (abilityActiveTimers.timeWarp > 0) abilityActiveTimers.timeWarp--;
-  if (orbitalStrikeTimer > 0) orbitalStrikeTimer--;
+  if (orbitalStrikeTimer > 0) {
+    orbitalStrikeTimer--;
+    if (hasChallengePurchase('orbitalStrikeUpgrade') && orbitalStrikeAllHit) {
+      const hasTargets = aliens.length > 0 || (boss && boss.hp > 0);
+      if (!hasTargets) orbitalStrikeAllHit = false;
+      if (orbitalStrikeTimer === 0 && !orbitalStrikeExtended) {
+        orbitalStrikeTimer = 180;
+        orbitalStrikeExtended = true;
+        for (let i = aliens.length - 1; i >= 0; i--) {
+          aliens[i].hp -= 5;
+          spawnHitParticles(aliens[i].x, aliens[i].y, '#ffaa00');
+          if (aliens[i].hp <= 0) {
+            const t = ALIEN_TYPES[aliens[i].type];
+            score += t.score * Math.ceil(wave / 2);
+            spawnExplosion(aliens[i].x, aliens[i].y);
+            maybeDropPowerup(aliens[i].x, aliens[i].y);
+            aliens.splice(i, 1);
+          }
+        }
+        if (boss && !boss.shielded && !boss.invuln) {
+          const dmg = Math.ceil(boss.maxHp * 0.1);
+          boss.hp -= dmg;
+          spawnHitParticles(boss.x, boss.y, '#ffaa00');
+          if (boss.hp <= 0) boss.hp = 1;
+        }
+        hudScore.textContent = 'SCORE: ' + score;
+      }
+    }
+  }
 }
 
 function drawAbilityHUD() {
@@ -1602,6 +1912,15 @@ function drawAbilityHUD() {
 }
 
 function drawAbilityEffects() {
+  if (challengeRunActive) {
+    ctx.fillStyle = 'rgba(200,0,0,0.04)';
+    ctx.fillRect(0, 0, W, H);
+    ctx.fillStyle = '#ff444488';
+    ctx.font = 'bold 10px "Segoe UI", sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('\u2620 CHALLENGE MODE', W / 2, 18);
+    ctx.textAlign = 'start';
+  }
   if (abilityActiveTimers.timeWarp > 0) {
     ctx.fillStyle = `rgba(50, 100, 255, ${0.08 + Math.sin(frameCount * 0.1) * 0.03})`;
     ctx.fillRect(0, 0, W, H);
@@ -1646,6 +1965,9 @@ function showPrestigeModal() {
   const nextBonus = 10 + (nextPrestige - 1) * 5;
 
   let abilityUnlockText = '';
+  if (nextPrestige === 1) {
+    abilityUnlockText += `<li style="color:#ff4444;">Unlocks <strong>\u2620 Challenge Runs</strong> &amp; the Challenge Shop</li>`;
+  }
   for (const [id, def] of Object.entries(ULTIMATE_ABILITIES)) {
     if (def.requiredPrestige === nextPrestige) {
       abilityUnlockText += `<li style="color:#ffaa44;">Unlocks <strong>${def.name}</strong> (${def.desc})</li>`;
@@ -1688,6 +2010,8 @@ async function confirmPrestige() {
     buildUpgradesPanel();
     buildCheckpoints();
     fetchPrestigeLeaderboard();
+    const challengeBtn = document.getElementById('challengeRunBtn');
+    if (challengeBtn) challengeBtn.classList.toggle('locked', getPrestigeLevel() < 1);
     hidePrestigeModal();
   } else if (data.error) {
     alert(data.error);
@@ -1722,6 +2046,136 @@ async function resetCheckpointsAfterWave50() {
     currentUser = data.user;
     startingWave = 1;
     buildCheckpoints();
+  }
+}
+
+// ─── Challenge System ─────────────────────────────────────────
+function handleChallengeBtn() {
+  if (getPrestigeLevel() < 1) {
+    const btn = document.getElementById('challengeRunBtn');
+    if (btn.querySelector('.cr-lock-msg')) return;
+    const msg = document.createElement('div');
+    msg.className = 'cr-lock-msg';
+    msg.textContent = 'Unlocked at Prestige 1!';
+    msg.style.cssText = 'color:#ffaa44;font-size:10px;letter-spacing:0;margin-top:4px;';
+    btn.appendChild(msg);
+    setTimeout(() => { if (msg.parentNode) msg.remove(); }, 2000);
+    return;
+  }
+  showChallengeModal('setup');
+}
+
+function showChallengeModal(tab) {
+  if (tab === 'shop') renderChallengeShop();
+  else renderChallengeSetup();
+  document.getElementById('challengeModal').classList.remove('hidden');
+}
+function hideChallengeModal() {
+  document.getElementById('challengeModal').classList.add('hidden');
+}
+function toggleModifier(mod, level, max) {
+  if (challengeModifiers[mod] === level) challengeModifiers[mod] = level - 1;
+  else challengeModifiers[mod] = level;
+  renderChallengeSetup();
+}
+function renderChallengeSetup() {
+  const totalLevels = challengeModifiers.enemySpeed + challengeModifiers.enemyDamage + challengeModifiers.enemyVariety + challengeModifiers.enemyHealth;
+  const box = document.getElementById('challengeModalBox');
+  function modBtns(mod, max) {
+    let h = '';
+    for (let l = 1; l <= max; l++) {
+      h += '<button class="mod-btn ' + (challengeModifiers[mod] >= l ? 'active' : '') + '" onclick="toggleModifier(\'' + mod + '\',' + l + ',' + max + ')">' + l + '</button>';
+    }
+    return h;
+  }
+  box.innerHTML =
+    '<h2>\u2620 CHALLENGE RUN</h2>' +
+    '<div class="challenge-tabs">' +
+      '<button class="challenge-tab active" onclick="renderChallengeSetup()">Setup Run</button>' +
+      '<button class="challenge-tab" onclick="renderChallengeShop()">Challenge Shop</button>' +
+    '</div>' +
+    '<div class="modifier-row"><div class="mod-header"><span class="mod-name">Enemy Speed</span><span class="mod-desc">+10% per level</span></div><div class="mod-levels">' + modBtns('enemySpeed', 5) + '</div></div>' +
+    '<div class="modifier-row"><div class="mod-header"><span class="mod-name">Enemy Damage</span><span class="mod-desc">+1 life lost per hit per level</span></div><div class="mod-levels">' + modBtns('enemyDamage', 2) + '</div></div>' +
+    '<div class="modifier-row"><div class="mod-header"><span class="mod-name">Enemy Variety</span><span class="mod-desc">+1 new enemy type per level</span></div><div class="mod-levels">' + modBtns('enemyVariety', 3) + '</div></div>' +
+    '<div class="modifier-row"><div class="mod-header"><span class="mod-name">Enemy Health</span><span class="mod-desc">+1 HP per alien per level</span></div><div class="mod-levels">' + modBtns('enemyHealth', 3) + '</div></div>' +
+    '<div class="challenge-summary">' +
+      'Total Modifier Levels: <strong>' + totalLevels + '</strong><br>' +
+      'Challenge Points Reward: <strong>' + totalLevels + ' C$</strong><br>' +
+      'Points Bonus: <strong>+25%</strong>' +
+      (totalLevels < 3 ? '<div class="mod-warning">\u26A0 Minimum 3 modifier levels required</div>' : '') +
+    '</div>' +
+    '<div class="challenge-warning">\u26A0 HARDCORE: No checkpoints. Death = no rewards.<br>All bosses are Enraged.</div>' +
+    '<div class="prestige-modal-btns">' +
+      '<button onclick="hideChallengeModal()">CANCEL</button>' +
+      '<button ' + (totalLevels < 3 ? 'disabled' : '') + ' onclick="startChallengeRun()" style="background:linear-gradient(135deg,#cc2222,#881111);border-color:#ff4444;">START CHALLENGE</button>' +
+    '</div>';
+}
+function renderChallengeShop() {
+  const box = document.getElementById('challengeModalBox');
+  const cp = currentUser ? (currentUser.challengePoints || 0) : 0;
+  let abilitiesHTML = '', upgradesHTML = '', cosmeticsHTML = '';
+  for (const [id, item] of Object.entries(CHALLENGE_SHOP_ITEMS)) {
+    const owned = hasChallengePurchase(id) || hasAbility(id);
+    const locked = (item.requiredPrestige && getPrestigeLevel() < item.requiredPrestige) || (item.requiresOwned && !hasAbility(item.requiresOwned));
+    const canBuy = !owned && !locked && cp >= item.cost;
+    const itemHTML =
+      '<div class="challenge-shop-item' + (locked ? ' locked' : '') + '">' +
+        '<div class="cs-header">' +
+          '<span style="color:' + item.color + '">\u2B25</span>' +
+          '<span class="cs-name">' + item.name + '</span>' +
+          (item.key ? '<span class="ability-key">' + item.key + '</span>' : '') +
+        '</div>' +
+        '<div class="cs-desc">' + item.desc + '</div>' +
+        '<button class="cs-buy-btn ' + (owned ? 'owned' : canBuy ? 'buy' : 'locked-btn') + '"' +
+          (!canBuy && !owned ? ' disabled' : owned ? ' disabled' : '') +
+          ' onclick="purchaseChallengeItem(\'' + id + '\')">' +
+          (owned ? '\u2713 OWNED' : (item.requiresOwned && !hasAbility(item.requiresOwned)) ? 'Requires ' + (CHALLENGE_SHOP_ITEMS[item.requiresOwned]||{}).name : locked ? 'Prestige ' + item.requiredPrestige + ' Required' : item.cost + ' C$') +
+        '</button>' +
+      '</div>';
+    if (item.category === 'ability') abilitiesHTML += itemHTML;
+    else if (item.category === 'upgrade') upgradesHTML += itemHTML;
+    else cosmeticsHTML += itemHTML;
+  }
+  box.innerHTML =
+    '<h2>\u2620 CHALLENGE RUN</h2>' +
+    '<div class="challenge-tabs">' +
+      '<button class="challenge-tab" onclick="renderChallengeSetup()">Setup Run</button>' +
+      '<button class="challenge-tab active" onclick="renderChallengeShop()">Challenge Shop</button>' +
+    '</div>' +
+    '<div class="cs-balance">\u2620 ' + cp + ' C$</div>' +
+    '<div class="cs-section-title">\u2605 ULTIMATE ABILITIES</div>' + abilitiesHTML +
+    '<div class="cs-section-title">\u26A1 PERMANENT UPGRADES</div>' + upgradesHTML +
+    '<div class="cs-section-title">\uD83D\uDC51 COSMETICS</div>' + cosmeticsHTML +
+    '<div class="prestige-modal-btns" style="margin-top:16px;"><button onclick="hideChallengeModal()">CLOSE</button></div>';
+}
+async function purchaseChallengeItem(id) {
+  if (!currentUser) return;
+  const data = await apiCall('/api/user/challengeshop', { itemId: id });
+  if (data.user) {
+    currentUser = data.user;
+    updatePointsDisplay();
+    buildUpgradesPanel();
+    renderChallengeShop();
+  } else if (data.error) {
+    alert(data.error);
+  }
+}
+function startChallengeRun() {
+  const total = challengeModifiers.enemySpeed + challengeModifiers.enemyDamage + challengeModifiers.enemyVariety + challengeModifiers.enemyHealth;
+  if (total < 3) return;
+  challengeRunActive = true;
+  preChallengeStartWave = startingWave;
+  hideChallengeModal();
+  startingWave = 1;
+  startGame();
+}
+async function saveChallengeComplete(cpEarned, score) {
+  if (!currentUser) return;
+  const data = await apiCall('/api/user/challengecomplete', { challengePointsEarned: cpEarned, score: score });
+  if (data.user) {
+    currentUser = data.user;
+    updatePointsDisplay();
+    buildUpgradesPanel();
   }
 }
 
@@ -1785,6 +2239,11 @@ function drawPlayer() {
   ctx.fillStyle = '#99ccff'; ctx.beginPath(); ctx.ellipse(px, py-6, 5, 8, 0, 0, Math.PI*2); ctx.fill();
   ctx.strokeStyle = '#6688ff'; ctx.lineWidth = 1.5;
   ctx.beginPath(); ctx.moveTo(px-14,py+12); ctx.lineTo(px-6,py+2); ctx.moveTo(px+14,py+12); ctx.lineTo(px+6,py+2); ctx.stroke();
+  if (hasChallengePurchase('championCrown')) {
+    ctx.fillStyle='#ffcc00';
+    ctx.beginPath();ctx.moveTo(px-6,py-26);ctx.lineTo(px-8,py-32);ctx.lineTo(px-4,py-29);ctx.lineTo(px,py-34);ctx.lineTo(px+4,py-29);ctx.lineTo(px+8,py-32);ctx.lineTo(px+6,py-26);ctx.closePath();ctx.fill();
+    ctx.fillStyle='#ff4444';ctx.beginPath();ctx.arc(px,py-29,1.5,0,Math.PI*2);ctx.fill();
+  }
 }
 
 function updatePlayer() {
@@ -1811,6 +2270,10 @@ function spawnBullet() {
   if (getUpgradeLevel('extraBullet') > 0) {
     bullets.push({x:player.x, y:player.y-28, w:4, h:16, speed:bSpd+0.5, vx:0});
   }
+  if (hasChallengePurchase('wingmanCannons')) {
+    bullets.push({x:player.x-16, y:player.y-18, w:3, h:12, speed:bSpd, vx:0});
+    bullets.push({x:player.x+16, y:player.y-18, w:3, h:12, speed:bSpd, vx:0});
+  }
   if (activePowerups.multiShot > 0) {
     bullets.push({x:player.x-14, y:player.y-20, w:3, h:12, speed:bSpd, vx:0});
     bullets.push({x:player.x+14, y:player.y-20, w:3, h:12, speed:bSpd, vx:0});
@@ -1822,7 +2285,7 @@ function spawnBullet() {
 }
 
 function updateBullets() {
-  const fireRateMult = Math.max(0.5, 1 - getUpgradeLevel('fireRate') * 0.03);
+  const fireRateMult = Math.max(0.5, 1 - getUpgradeLevel('fireRate') * 0.03) * (hasChallengePurchase('rapidPlasma') ? 0.85 : 1);
   const interval = Math.max(3, Math.floor((activePowerups.rapidFire > 0 ? baseShootInterval/2 : baseShootInterval) * fireRateMult));
   shootTimer++;
   if (shootTimer >= interval) { shootTimer=0; spawnBullet(); }
@@ -1834,13 +2297,13 @@ function updateBullets() {
 }
 
 function drawBullets() {
+  ctx.shadowColor='#5599ff'; ctx.shadowBlur=6;
   for (const b of bullets) {
     const grad=ctx.createLinearGradient(b.x,b.y,b.x,b.y+b.h);
     grad.addColorStop(0,'#aaddff'); grad.addColorStop(1,'#3366ff');
     ctx.fillStyle=grad; ctx.fillRect(b.x-b.w/2,b.y,b.w,b.h);
-    ctx.shadowColor='#5599ff'; ctx.shadowBlur=6;
-    ctx.fillRect(b.x-b.w/2,b.y,b.w,b.h); ctx.shadowBlur=0;
   }
+  ctx.shadowBlur=0;
 }
 
 // ─── Alien Type Selection ─────────────────────────────────────
@@ -1848,10 +2311,22 @@ function getAlienTypesForWave(w) {
   const types = ['grunt'];
   if (w >= 4) types.push('speeder');
   if (w >= 8) types.push('shooter');
+  if (w >= 10) types.push('splitter');
   if (w >= 12) types.push('tank');
+  if (w >= 15) types.push('dodger');
+  if (w >= 20) types.push('shielder');
+  if (w >= 25) types.push('bomber');
+  if (w >= 30) types.push('warper');
+  if (challengeRunActive) {
+    if (challengeModifiers.enemyVariety >= 1) types.push('juggernaut');
+    if (challengeModifiers.enemyVariety >= 2) types.push('stalker');
+    if (challengeModifiers.enemyVariety >= 3) types.push('inferno');
+  }
   return types;
 }
 function pickAlienType(types, row) {
+  if (row===0 && types.includes('warper') && Math.random()<0.15) return 'warper';
+  if (row===0 && types.includes('shielder') && Math.random()<0.2) return 'shielder';
   if (row===0 && types.includes('tank') && Math.random()<0.3) return 'tank';
   if (row===0 && types.includes('shooter') && Math.random()<0.4) return 'shooter';
   return types[Math.floor(Math.random()*types.length)];
@@ -1882,23 +2357,33 @@ function spawnWave() {
   for (let r=0; r<rows; r++) {
     for (let c=0; c<cols; c++) {
       const typeName=pickAlienType(types,r); const t=ALIEN_TYPES[typeName];
-      const hpBonus=Math.floor(wave/5);
+      const hpBonus=Math.floor(wave/5)+(challengeRunActive?challengeModifiers.enemyHealth:0);
       aliens.push({x:offsetX+c*spacingX, y:-40-r*spacingY, w:t.w, h:t.h,
         hp:t.hp+hpBonus, maxHp:t.hp+hpBonus, speed:t.speed+wave*0.02,
         startX:offsetX+c*spacingX, time:Math.random()*Math.PI*2,
-        type:typeName, canShoot:(typeName==='shooter'), shootTimer:Math.floor(Math.random()*120)});
+        type:typeName, canShoot:(typeName==='shooter'||typeName==='inferno'), shootTimer:Math.floor(Math.random()*120)});
     }
   }
 }
 
 // ─── Alien Update ─────────────────────────────────────────────
 function updateAliens() {
-  const twMult = (abilityActiveTimers.timeWarp > 0) ? 0.5 : 1;
+  const twMult = (abilityActiveTimers.timeWarp > 0) ? 0.25 : 1;
+  const cSpeedMult = challengeRunActive ? (1 + challengeModifiers.enemySpeed * 0.1) : 1;
+  const alienMult = twMult * cSpeedMult;
   for (let i=aliens.length-1; i>=0; i--) {
     const a=aliens[i]; const t=ALIEN_TYPES[a.type];
-    a.y+=a.speed*twMult; a.time+=t.oscillationSpeed*twMult;
-    a.x=a.startX+Math.sin(a.time)*t.oscillation;
-    if (a.canShoot) { a.shootTimer--; if (a.shootTimer<=0) { a.shootTimer=150+Math.floor(Math.random()*100); alienBullets.push({x:a.x,y:a.y+a.h/2,w:4,h:12,speed:2.8+wave*0.1}); } }
+    a.y+=a.speed*alienMult; a.time+=t.oscillationSpeed*alienMult;
+    if (a.type==='stalker') { const tx=player.x; if(a.x<tx-5)a.x+=1.5*alienMult; else if(a.x>tx+5)a.x-=1.5*alienMult; }
+    else { a.x=a.startX+Math.sin(a.time)*t.oscillation; }
+    if (a.canShoot) { a.shootTimer--; if (a.shootTimer<=0) { a.shootTimer=150+Math.floor(Math.random()*100); if(a.type==='inferno'){const ang=Math.atan2(player.y-a.y,player.x-a.x);for(let j=-1;j<=1;j++){const sa=ang+j*0.25;const spd=2.5;alienBullets.push({x:a.x,y:a.y+a.h/2,w:5,h:10,speed:spd,vx:Math.cos(sa)*spd,vy:Math.sin(sa)*spd});}}else{alienBullets.push({x:a.x,y:a.y+a.h/2,w:4,h:12,speed:2.8+wave*0.1});} } }
+    if (a.type==='juggernaut') { a.chargeTimer=(a.chargeTimer||300); a.chargeTimer--; if(a.chargeTimer<=0){a.chargeTimer=300+Math.floor(Math.random()*120);a.chargeBoost=90;} if(a.chargeBoost>0){a.y+=a.speed*2*alienMult;a.chargeBoost--;} }
+    // Dodger phasing
+    if (a.type==='dodger') { a.phaseTimer=(a.phaseTimer||0)+1; if(a.phased){if(a.phaseTimer>=40){a.phased=false;a.phaseTimer=0;}}else{if(a.phaseTimer>=120){a.phased=true;a.phaseTimer=0;}} }
+    // Bomber mine dropping
+    if (a.type==='bomber') { a.mineTimer=(a.mineTimer||0)+1; if(a.mineTimer>=150&&a.y>30&&a.y<H-50){a.mineTimer=0;mines.push({x:a.x,y:a.y+a.h/2,life:300,radius:30});} }
+    // Warper teleporting
+    if (a.type==='warper') { a.warpTimer=(a.warpTimer||0)+1;a.warpFlash=Math.max(0,(a.warpFlash||0)-1); if(a.warpTimer>=180&&a.y>40){a.warpTimer=0;a.warpFlash=15;spawnHitParticles(a.x,a.y,'#cc66cc');a.startX=60+Math.random()*(W-120);a.x=a.startX;spawnHitParticles(a.x,a.y,'#cc66cc');const ang=Math.atan2(player.y-a.y,player.x-a.x);for(let j=-1;j<=1;j++){const sa=ang+j*0.2;alienBullets.push({x:a.x,y:a.y+a.h/2,w:5,h:10,speed:3,vx:Math.cos(sa)*3,vy:Math.sin(sa)*3});}}}
     if (a.y>H+20) { aliens.splice(i,1); loseLife(); }
   }
   alienShootTimer++;
@@ -1918,7 +2403,22 @@ function updateAliens() {
 function drawAliens() {
   for (const a of aliens) {
     const ax=a.x,ay=a.y; const t=ALIEN_TYPES[a.type]; const hpRatio=a.hp/a.maxHp;
-    switch(a.type){case'grunt':drawGrunt(ax,ay,t,hpRatio,a.time);break;case'speeder':drawSpeeder(ax,ay,t,hpRatio,a.time);break;case'tank':drawTank(ax,ay,t,hpRatio,a.time);break;case'shooter':drawShooterAlien(ax,ay,t,hpRatio,a.time);break;}
+    if (a.type==='dodger' && a.phased) ctx.globalAlpha=0.25+Math.sin(a.time*6)*0.1;
+    switch(a.type){
+      case'grunt':drawGrunt(ax,ay,t,hpRatio,a.time);break;
+      case'speeder':drawSpeeder(ax,ay,t,hpRatio,a.time);break;
+      case'tank':drawTank(ax,ay,t,hpRatio,a.time);break;
+      case'shooter':drawShooterAlien(ax,ay,t,hpRatio,a.time);break;
+      case'splitter':drawSplitter(ax,ay,t,hpRatio,a.time);break;
+      case'dodger':drawDodger(ax,ay,t,hpRatio,a.time);break;
+      case'shielder':drawShielder(ax,ay,t,hpRatio,a.time);break;
+      case'bomber':drawBomber(ax,ay,t,hpRatio,a.time);break;
+      case'warper':drawWarper(ax,ay,t,hpRatio,a.time,a);break;
+      case'juggernaut':drawJuggernaut(ax,ay,t,hpRatio,a.time);break;
+      case'stalker':drawStalker(ax,ay,t,hpRatio,a.time);break;
+      case'inferno':drawInferno(ax,ay,t,hpRatio,a.time);break;
+    }
+    if (a.type==='dodger' && a.phased) ctx.globalAlpha=1;
   }
 }
 
@@ -1927,15 +2427,135 @@ function drawSpeeder(ax,ay,t,hpRatio,time){ctx.fillStyle=lerpColor(t.color1,'#ff
 function drawTank(ax,ay,t,hpRatio,time){ctx.fillStyle=lerpColor(t.color1,'#ff2222',1-hpRatio);ctx.beginPath();ctx.moveTo(ax-20,ay-6);ctx.lineTo(ax-16,ay-16);ctx.lineTo(ax+16,ay-16);ctx.lineTo(ax+20,ay-6);ctx.lineTo(ax+22,ay+10);ctx.lineTo(ax-22,ay+10);ctx.closePath();ctx.fill();ctx.strokeStyle=t.color2;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(ax-18,ay-2);ctx.lineTo(ax+18,ay-2);ctx.moveTo(ax-16,ay+6);ctx.lineTo(ax+16,ay+6);ctx.stroke();ctx.fillStyle=t.eyeColor;ctx.beginPath();ctx.arc(ax-8,ay-9,4,0,Math.PI*2);ctx.arc(ax+8,ay-9,4,0,Math.PI*2);ctx.fill();ctx.fillStyle='#ff8800';ctx.beginPath();ctx.arc(ax-8,ay-9,1.8,0,Math.PI*2);ctx.arc(ax+8,ay-9,1.8,0,Math.PI*2);ctx.fill();ctx.strokeStyle=`rgba(255,200,100,${0.2+Math.sin(time*2)*0.15})`;ctx.lineWidth=2;ctx.beginPath();ctx.ellipse(ax,ay-2,24,20,0,0,Math.PI*2);ctx.stroke();}
 function drawShooterAlien(ax,ay,t,hpRatio,time){ctx.fillStyle=lerpColor(t.color1,'#ff4444',1-hpRatio);ctx.beginPath();ctx.ellipse(ax,ay,14,11,0,0,Math.PI*2);ctx.fill();ctx.fillStyle=t.color2;ctx.fillRect(ax-3,ay+8,6,10);const ga=0.3+Math.sin(time*4)*0.2;ctx.fillStyle=`rgba(100,150,255,${ga})`;ctx.beginPath();ctx.arc(ax,ay+18,4,0,Math.PI*2);ctx.fill();ctx.fillStyle=t.eyeColor;ctx.beginPath();ctx.arc(ax-5,ay-3,2.5,0,Math.PI*2);ctx.arc(ax+5,ay-3,2.5,0,Math.PI*2);ctx.fill();ctx.fillStyle=t.color2+'88';ctx.beginPath();ctx.ellipse(ax,ay-7,8,6,0,Math.PI,0);ctx.fill();}
 
+function drawSplitter(ax,ay,t,hpRatio,time){
+  ctx.fillStyle=lerpColor(t.color1,'#ff4444',1-hpRatio);
+  // Pulsing blob body
+  const pulse=1+Math.sin(time*4)*0.08;
+  ctx.beginPath();ctx.ellipse(ax,ay,16*pulse,14*pulse,0,0,Math.PI*2);ctx.fill();
+  ctx.fillStyle=t.color2+'cc';ctx.beginPath();ctx.ellipse(ax,ay-4,10*pulse,8*pulse,0,Math.PI,0);ctx.fill();
+  // Split line down the middle
+  ctx.strokeStyle=t.color2;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(ax,ay-14*pulse);ctx.lineTo(ax,ay+14*pulse);ctx.stroke();
+  // Eyes (two on each side of split)
+  ctx.fillStyle=t.eyeColor;ctx.beginPath();ctx.arc(ax-5,ay-3,2.5,0,Math.PI*2);ctx.arc(ax+5,ay-3,2.5,0,Math.PI*2);ctx.fill();
+  ctx.fillStyle='#fff';ctx.beginPath();ctx.arc(ax-5,ay-3,1,0,Math.PI*2);ctx.arc(ax+5,ay-3,1,0,Math.PI*2);ctx.fill();
+  // Small bumps suggesting it's about to split
+  ctx.fillStyle=t.color1+'aa';
+  ctx.beginPath();ctx.arc(ax-10,ay+8,5,0,Math.PI*2);ctx.arc(ax+10,ay+8,5,0,Math.PI*2);ctx.fill();
+}
+
+function drawDodger(ax,ay,t,hpRatio,time){
+  ctx.fillStyle=lerpColor(t.color1,'#ff4444',1-hpRatio);
+  // Wispy diamond shape
+  ctx.beginPath();ctx.moveTo(ax,ay-13);ctx.lineTo(ax+12,ay);ctx.lineTo(ax,ay+13);ctx.lineTo(ax-12,ay);ctx.closePath();ctx.fill();
+  ctx.fillStyle=t.color2+'88';ctx.beginPath();ctx.moveTo(ax,ay-8);ctx.lineTo(ax+7,ay);ctx.lineTo(ax,ay+8);ctx.lineTo(ax-7,ay);ctx.closePath();ctx.fill();
+  // Ghostly trail
+  const trail=Math.sin(time*5)*6;
+  ctx.strokeStyle=t.color2+'44';ctx.lineWidth=2;
+  ctx.beginPath();ctx.moveTo(ax-6,ay+10);ctx.quadraticCurveTo(ax+trail,ay+20,ax-3,ay+24);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(ax+6,ay+10);ctx.quadraticCurveTo(ax-trail,ay+20,ax+3,ay+24);ctx.stroke();
+  // Eye
+  ctx.fillStyle=t.eyeColor;ctx.beginPath();ctx.arc(ax,ay-2,3,0,Math.PI*2);ctx.fill();
+  ctx.fillStyle='#fff';ctx.beginPath();ctx.arc(ax,ay-2,1.2,0,Math.PI*2);ctx.fill();
+}
+
+function drawShielder(ax,ay,t,hpRatio,time){
+  ctx.fillStyle=lerpColor(t.color1,'#ff4444',1-hpRatio);
+  // Armored body
+  ctx.beginPath();ctx.moveTo(ax-18,ay+12);ctx.lineTo(ax-16,ay-8);ctx.lineTo(ax-6,ay-14);ctx.lineTo(ax+6,ay-14);ctx.lineTo(ax+16,ay-8);ctx.lineTo(ax+18,ay+12);ctx.lineTo(ax+10,ay+16);ctx.lineTo(ax-10,ay+16);ctx.closePath();ctx.fill();
+  // Inner plate
+  ctx.fillStyle=t.color2+'aa';
+  ctx.beginPath();ctx.moveTo(ax-10,ay+6);ctx.lineTo(ax-8,ay-4);ctx.lineTo(ax+8,ay-4);ctx.lineTo(ax+10,ay+6);ctx.lineTo(ax+6,ay+10);ctx.lineTo(ax-6,ay+10);ctx.closePath();ctx.fill();
+  // Shield bar on top (glowing)
+  const shimmer=0.6+Math.sin(time*4)*0.3;
+  ctx.fillStyle=`rgba(68,204,238,${shimmer})`;
+  ctx.fillRect(ax-14,ay-17,28,5);
+  ctx.strokeStyle=`rgba(100,220,255,${shimmer})`;ctx.lineWidth=1.5;ctx.strokeRect(ax-14,ay-17,28,5);
+  // Eyes
+  ctx.fillStyle=t.eyeColor;ctx.beginPath();ctx.arc(ax-6,ay-6,2.5,0,Math.PI*2);ctx.arc(ax+6,ay-6,2.5,0,Math.PI*2);ctx.fill();
+  ctx.fillStyle='#fff';ctx.beginPath();ctx.arc(ax-6,ay-6,1,0,Math.PI*2);ctx.arc(ax+6,ay-6,1,0,Math.PI*2);ctx.fill();
+}
+
+function drawBomber(ax,ay,t,hpRatio,time){
+  ctx.fillStyle=lerpColor(t.color1,'#ff4444',1-hpRatio);
+  // Round bomb-shaped body
+  ctx.beginPath();ctx.arc(ax,ay,14,0,Math.PI*2);ctx.fill();
+  ctx.fillStyle=t.color2+'cc';ctx.beginPath();ctx.arc(ax,ay-4,8,Math.PI,0);ctx.fill();
+  // Fuse on top
+  ctx.strokeStyle=t.color2;ctx.lineWidth=2;
+  const fuseWave=Math.sin(time*6)*3;
+  ctx.beginPath();ctx.moveTo(ax,ay-14);ctx.quadraticCurveTo(ax+fuseWave,ay-20,ax+4,ay-22);ctx.stroke();
+  // Fuse spark
+  ctx.fillStyle=`rgba(255,255,100,${0.5+Math.sin(time*10)*0.4})`;ctx.beginPath();ctx.arc(ax+4,ay-22,3,0,Math.PI*2);ctx.fill();
+  // Eyes (menacing)
+  ctx.fillStyle=t.eyeColor;ctx.beginPath();ctx.arc(ax-5,ay-2,2.5,0,Math.PI*2);ctx.arc(ax+5,ay-2,2.5,0,Math.PI*2);ctx.fill();
+  ctx.fillStyle='#000';ctx.beginPath();ctx.arc(ax-5,ay-2,1.2,0,Math.PI*2);ctx.arc(ax+5,ay-2,1.2,0,Math.PI*2);ctx.fill();
+  // Bomb bay indicator
+  ctx.fillStyle='rgba(255,80,60,0.4)';ctx.beginPath();ctx.arc(ax,ay+10,4,0,Math.PI*2);ctx.fill();
+}
+
+function drawWarper(ax,ay,t,hpRatio,time,a){
+  // Teleport shimmer effect
+  if (a && a.warpFlash>0) {
+    const fl=a.warpFlash/15;
+    ctx.fillStyle=`rgba(200,100,255,${fl*0.4})`;ctx.beginPath();ctx.arc(ax,ay,30*fl,0,Math.PI*2);ctx.fill();
+  }
+  ctx.fillStyle=lerpColor(t.color1,'#ff4444',1-hpRatio);
+  // Crystalline hexagonal body
+  const hw=18,hh=20;
+  ctx.beginPath();ctx.moveTo(ax,ay-hh);ctx.lineTo(ax+hw,ay-hh*0.4);ctx.lineTo(ax+hw,ay+hh*0.4);ctx.lineTo(ax,ay+hh);ctx.lineTo(ax-hw,ay+hh*0.4);ctx.lineTo(ax-hw,ay-hh*0.4);ctx.closePath();ctx.fill();
+  // Inner glow
+  ctx.fillStyle=t.color2+'88';
+  ctx.beginPath();ctx.moveTo(ax,ay-hh*0.6);ctx.lineTo(ax+hw*0.6,ay-hh*0.2);ctx.lineTo(ax+hw*0.6,ay+hh*0.2);ctx.lineTo(ax,ay+hh*0.6);ctx.lineTo(ax-hw*0.6,ay+hh*0.2);ctx.lineTo(ax-hw*0.6,ay-hh*0.2);ctx.closePath();ctx.fill();
+  // Rotating energy lines
+  for(let i=0;i<4;i++){const a2=time*2+i*Math.PI/2;ctx.strokeStyle=t.color2+'66';ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(ax+Math.cos(a2)*8,ay+Math.sin(a2)*8);ctx.lineTo(ax+Math.cos(a2)*hw*0.8,ay+Math.sin(a2)*hh*0.8);ctx.stroke();}
+  // Central eye
+  ctx.fillStyle='#000';ctx.beginPath();ctx.arc(ax,ay,5,0,Math.PI*2);ctx.fill();
+  ctx.fillStyle=t.eyeColor;ctx.beginPath();ctx.arc(ax,ay,3.5,0,Math.PI*2);ctx.fill();
+  ctx.fillStyle='#fff';ctx.beginPath();ctx.arc(ax,ay,1.5,0,Math.PI*2);ctx.fill();
+}
+
+function drawJuggernaut(ax,ay,t,hpRatio,time){
+  ctx.fillStyle=lerpColor(t.color1,'#ff2222',1-hpRatio);
+  ctx.beginPath();ctx.moveTo(ax-22,ay+18);ctx.lineTo(ax-24,ay-6);ctx.lineTo(ax-16,ay-18);ctx.lineTo(ax+16,ay-18);ctx.lineTo(ax+24,ay-6);ctx.lineTo(ax+22,ay+18);ctx.closePath();ctx.fill();
+  ctx.fillStyle=t.color2+'aa';ctx.fillRect(ax-18,ay-8,36,6);ctx.fillRect(ax-16,ay+2,32,6);ctx.fillRect(ax-14,ay+12,28,4);
+  ctx.fillStyle=t.eyeColor;ctx.beginPath();ctx.arc(ax-8,ay-12,4,0,Math.PI*2);ctx.arc(ax+8,ay-12,4,0,Math.PI*2);ctx.fill();
+  ctx.fillStyle='#ffcc00';ctx.beginPath();ctx.arc(ax-8,ay-12,1.8,0,Math.PI*2);ctx.arc(ax+8,ay-12,1.8,0,Math.PI*2);ctx.fill();
+  const chg=(time*0.3%6)<1;
+  if(chg){ctx.strokeStyle='rgba(255,80,0,0.5)';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(ax,ay+18);ctx.lineTo(ax-6,ay+30);ctx.moveTo(ax,ay+18);ctx.lineTo(ax+6,ay+30);ctx.stroke();}
+}
+function drawStalker(ax,ay,t,hpRatio,time){
+  ctx.fillStyle=lerpColor(t.color1,'#ff4444',1-hpRatio);
+  ctx.beginPath();ctx.moveTo(ax,ay-12);ctx.lineTo(ax+13,ay+2);ctx.lineTo(ax+8,ay+12);ctx.lineTo(ax-8,ay+12);ctx.lineTo(ax-13,ay+2);ctx.closePath();ctx.fill();
+  ctx.fillStyle=t.color2+'66';ctx.beginPath();ctx.moveTo(ax,ay-6);ctx.lineTo(ax+7,ay+2);ctx.lineTo(ax,ay+8);ctx.lineTo(ax-7,ay+2);ctx.closePath();ctx.fill();
+  ctx.fillStyle=t.eyeColor;ctx.beginPath();ctx.arc(ax-4,ay-2,2.5,0,Math.PI*2);ctx.arc(ax+4,ay-2,2.5,0,Math.PI*2);ctx.fill();
+  ctx.strokeStyle=t.color2+'88';ctx.lineWidth=1.5;
+  const trail=Math.sin(time*6)*4;
+  ctx.beginPath();ctx.moveTo(ax-6,ay+12);ctx.lineTo(ax-8+trail,ay+20);ctx.moveTo(ax+6,ay+12);ctx.lineTo(ax+8-trail,ay+20);ctx.stroke();
+}
+function drawInferno(ax,ay,t,hpRatio,time){
+  ctx.fillStyle=lerpColor(t.color1,'#ff0000',1-hpRatio);
+  ctx.beginPath();ctx.arc(ax,ay,14,0,Math.PI*2);ctx.fill();
+  const flicker=0.4+Math.sin(time*8)*0.3;
+  ctx.fillStyle=`rgba(255,100,0,${flicker})`;ctx.beginPath();ctx.arc(ax,ay,18,0,Math.PI*2);ctx.fill();
+  ctx.fillStyle=t.color2+'cc';ctx.beginPath();ctx.arc(ax,ay-4,8,Math.PI,0);ctx.fill();
+  ctx.fillStyle=t.eyeColor;ctx.beginPath();ctx.arc(ax-5,ay-2,2.5,0,Math.PI*2);ctx.arc(ax+5,ay-2,2.5,0,Math.PI*2);ctx.fill();
+  ctx.fillStyle='#fff';ctx.beginPath();ctx.arc(ax-5,ay-2,1,0,Math.PI*2);ctx.arc(ax+5,ay-2,1,0,Math.PI*2);ctx.fill();
+  for(let i=0;i<3;i++){const fa=time*5+i*2.1,fx=ax+Math.sin(fa)*10,fy=ay-8-Math.abs(Math.sin(fa*0.7))*10;ctx.fillStyle=`rgba(255,${150+Math.floor(Math.random()*100)},0,${0.5+Math.random()*0.3})`;ctx.beginPath();ctx.arc(fx,fy,3+Math.random()*2,0,Math.PI*2);ctx.fill();}
+}
+
 function lerpColor(a,b,t){t=Math.max(0,Math.min(1,t));const ar=parseInt(a.slice(1,3),16),ag=parseInt(a.slice(3,5),16),ab2=parseInt(a.slice(5,7),16);const br=parseInt(b.slice(1,3),16),bg=parseInt(b.slice(3,5),16),bb=parseInt(b.slice(5,7),16);return`rgb(${Math.floor(ar+(br-ar)*t)},${Math.floor(ag+(bg-ag)*t)},${Math.floor(ab2+(bb-ab2)*t)})`;}
 
 // ─── POWERUP SYSTEM ───────────────────────────────────────────
-function maybeDropPowerup(x,y){if(Math.random()>0.12)return;const roll=Math.random();let type;if(roll<0.03)type='extraLife';else if(roll<0.35)type='rapidFire';else if(roll<0.65)type='multiShot';else type='spreadShot';powerups.push({x,y,type,w:20,h:20,speed:1.2,time:Math.random()*Math.PI*2});}
+function maybeDropPowerup(x,y){if(Math.random()>0.108)return;const roll=Math.random();let type;if(roll<0.07)type='extraLife';else if(roll<0.38)type='rapidFire';else if(roll<0.69)type='multiShot';else type='spreadShot';powerups.push({x,y,type,w:20,h:20,speed:1.2,time:Math.random()*Math.PI*2});}
 function updatePowerups(){for(let i=powerups.length-1;i>=0;i--){const p=powerups[i];p.y+=p.speed;p.time+=0.05;if(p.y>H+20){powerups.splice(i,1);continue;}const dx=Math.abs(p.x-player.x),dy=Math.abs(p.y-player.y);if(dx<24&&dy<28){collectPowerup(p);powerups.splice(i,1);}}}
 function collectPowerup(p){const def=POWERUP_TYPES[p.type];spawnHitParticles(p.x,p.y,def.color);switch(p.type){case'rapidFire':activePowerups.rapidFire=def.duration;break;case'multiShot':activePowerups.multiShot=def.duration;break;case'spreadShot':activePowerups.spreadShot=def.duration;break;case'extraLife':lives++;hudLives.textContent='LIVES: '+lives;break;}}
 function drawPowerups(){for(const p of powerups){const def=POWERUP_TYPES[p.type];const bob=Math.sin(p.time)*3;ctx.fillStyle=def.glow+'33';ctx.beginPath();ctx.arc(p.x,p.y+bob,14,0,Math.PI*2);ctx.fill();if(p.type==='extraLife'){drawHeart(p.x,p.y+bob-2,10,def.color);}else{ctx.fillStyle=def.color;ctx.beginPath();ctx.arc(p.x,p.y+bob,10,0,Math.PI*2);ctx.fill();ctx.fillStyle='#000';ctx.font='bold 14px sans-serif';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(def.label,p.x,p.y+bob+1);ctx.textAlign='start';ctx.textBaseline='alphabetic';}ctx.strokeStyle=def.color;ctx.lineWidth=1.5;ctx.beginPath();ctx.arc(p.x,p.y+bob,12,0,Math.PI*2);ctx.stroke();}}
 function drawHeart(cx,cy,size,color){ctx.fillStyle=color;ctx.beginPath();const s=size/10;ctx.moveTo(cx,cy+8*s);ctx.bezierCurveTo(cx-10*s,cy+2*s,cx-10*s,cy-6*s,cx,cy-3*s);ctx.bezierCurveTo(cx+10*s,cy-6*s,cx+10*s,cy+2*s,cx,cy+8*s);ctx.fill();ctx.fillStyle='rgba(255,255,255,0.35)';ctx.beginPath();ctx.arc(cx-3*s,cy-2*s,2*s,0,Math.PI*2);ctx.fill();}
-function drawPowerupHUD(){let indicators=[];if(activePowerups.rapidFire>0)indicators.push({label:'\u26A1 RAPID',color:'#ffdd33',t:activePowerups.rapidFire,max:480});if(activePowerups.multiShot>0)indicators.push({label:'\u2AF8 MULTI',color:'#33aaff',t:activePowerups.multiShot,max:480});if(activePowerups.spreadShot>0)indicators.push({label:'\u2726 SPREAD',color:'#44ff88',t:activePowerups.spreadShot,max:480});for(let i=0;i<indicators.length;i++){const ind=indicators[i];const iy=38+i*18;const barW=80;const ratio=ind.t/ind.max;ctx.fillStyle='rgba(0,0,0,0.5)';ctx.fillRect(8,iy,barW+70,14);ctx.fillStyle=ind.color;ctx.font='bold 10px "Segoe UI", sans-serif';ctx.fillText(ind.label,12,iy+11);ctx.fillStyle=ind.color+'66';ctx.fillRect(68,iy+2,barW,10);ctx.fillStyle=ind.color;ctx.fillRect(68,iy+2,barW*ratio,10);}}
+function drawPowerupHUD(){let indicators=[];if(activePowerups.rapidFire>0)indicators.push({label:'\u26A1 RAPID',color:'#ffdd33',t:activePowerups.rapidFire,max:POWERUP_DURATION});if(activePowerups.multiShot>0)indicators.push({label:'\u2AF8 MULTI',color:'#33aaff',t:activePowerups.multiShot,max:POWERUP_DURATION});if(activePowerups.spreadShot>0)indicators.push({label:'\u2726 SPREAD',color:'#44ff88',t:activePowerups.spreadShot,max:POWERUP_DURATION});for(let i=0;i<indicators.length;i++){const ind=indicators[i];const iy=38+i*18;const barW=80;const ratio=ind.t/ind.max;ctx.fillStyle='rgba(0,0,0,0.5)';ctx.fillRect(8,iy,barW+70,14);ctx.fillStyle=ind.color;ctx.font='bold 10px "Segoe UI", sans-serif';ctx.fillText(ind.label,12,iy+11);ctx.fillStyle=ind.color+'66';ctx.fillRect(68,iy+2,barW,10);ctx.fillStyle=ind.color;ctx.fillRect(68,iy+2,barW*ratio,10);}}
+
+// ─── MINES SYSTEM (Bomber) ────────────────────────────────────
+function updateMines(){for(let i=mines.length-1;i>=0;i--){const m=mines[i];m.life--;if(m.life<=0){spawnHitParticles(m.x,m.y,'#ff5544');mines.splice(i,1);continue;}if(player.invincible<=0){const dx=player.x-m.x,dy=player.y-m.y;if(dx*dx+dy*dy<m.radius*m.radius){mines.splice(i,1);spawnExplosion(m.x,m.y);loseLife();}}}}
+function drawMines(){for(const m of mines){const pulse=0.8+Math.sin(m.life*0.15)*0.2;const urgency=m.life<90?0.6+Math.sin(m.life*0.4)*0.4:0.3;ctx.fillStyle=`rgba(255,60,40,${urgency*0.3})`;ctx.beginPath();ctx.arc(m.x,m.y,m.radius*pulse,0,Math.PI*2);ctx.fill();ctx.fillStyle=`rgba(255,80,60,${urgency})`;ctx.beginPath();ctx.arc(m.x,m.y,6,0,Math.PI*2);ctx.fill();ctx.strokeStyle=`rgba(255,100,80,${urgency*0.6})`;ctx.lineWidth=1.5;ctx.beginPath();ctx.arc(m.x,m.y,10*pulse,0,Math.PI*2);ctx.stroke();ctx.fillStyle=`rgba(255,255,100,${urgency*0.8})`;ctx.beginPath();ctx.arc(m.x,m.y,2,0,Math.PI*2);ctx.fill();}}
 
 // ─── BOSS SYSTEM ──────────────────────────────────────────────
 // Boss configs: wave -> {name,hp,w,h,spd,tY,shape,ai,c:[main,accent,eye,glow],ph:[phases],special}
@@ -1974,13 +2594,22 @@ function spawnBoss(w) {
     spawnInt:cfg.spawn||0, spawnTimer:0
   };
   bossWarningTimer = 120;
+  if (challengeRunActive) {
+    boss.name = 'ENRAGED ' + boss.name;
+    boss.hp = Math.floor(boss.hp * 1.5);
+    boss.maxHp = boss.hp;
+    boss.speed *= 1.3;
+    boss.baseSpeed *= 1.3;
+    boss.ai = Math.floor(boss.ai * 0.7);
+    boss.enraged = true;
+  }
 }
 
 function updateBoss() {
   if (!boss) return;
   if (bossWarningTimer > 0) { bossWarningTimer--; return; }
   const b = boss;
-  const bossTwMult = (abilityActiveTimers.timeWarp > 0) ? 0.5 : 1;
+  const bossTwMult = (abilityActiveTimers.timeWarp > 0) ? 0.25 : 1;
   b.time += 0.02;
   if (b.y < b.targetY) { b.y += 1.5; return; }
 
@@ -2391,7 +3020,7 @@ function checkBossCollisions() {
         spawnExplosion(boss.x + 30, boss.y - 10); spawnExplosion(boss.x, boss.y + 25);
         if (boss.bossWave === 50) { spawnExplosion(boss.x - 50, boss.y - 30); spawnExplosion(boss.x + 50, boss.y - 30); }
         const bw = boss.bossWave;
-        boss = null; alienBullets = [];
+        boss = null; alienBullets = []; mines = [];
         lives++; hudLives.textContent = 'LIVES: ' + lives;
         if (bw % 10 === 0 && !savedCheckpoints.has(bw)) {
           savedCheckpoints.add(bw);
@@ -2399,12 +3028,25 @@ function checkBossCollisions() {
         }
         if (bw === 50) {
           gameRunning = false;
-          const pe = Math.max(1, Math.floor(score / 10));
-          const displayPe = Math.floor(pe * (1 + getPrestigeBonus() / 100));
-          saveScore(pe);
-          resetCheckpointsAfterWave50();
-          overlay.classList.remove('hidden');
-          overlay.innerHTML = '<h1 style="color:#ffcc44">VICTORY!</h1><div class="score-display">You defeated THE FINALE!</div><p style="color:#ffcc44">+' + displayPe + ' points earned!</p><p>Final Score: ' + score + '</p><button class="btn-primary" onclick="showMainMenu()">CONTINUE</button>';
+          if (challengeRunActive) {
+            const totalLevels = challengeModifiers.enemySpeed + challengeModifiers.enemyDamage + challengeModifiers.enemyVariety + challengeModifiers.enemyHealth;
+            const pe = Math.max(1, Math.floor(score / 10));
+            const challengeBonus = 1.25;
+            const prestigeMult = 1 + getPrestigeBonus() / 100;
+            const finalPts = Math.floor(pe * challengeBonus * prestigeMult);
+            saveChallengeComplete(totalLevels, finalPts);
+            challengeRunActive = false;
+            startingWave = preChallengeStartWave;
+            overlay.classList.remove('hidden');
+            overlay.innerHTML = '<h1 style="color:#ff4444">\u2620 CHALLENGE COMPLETE!</h1><div class="score-display">You conquered the Challenge Run!</div><p style="color:#ff6644; font-size:18px;">+' + totalLevels + ' C$!</p><p style="color:#ffcc44">+' + finalPts + ' points earned!</p><p>Final Score: ' + score + '</p><button class="btn-primary" onclick="showMainMenu()">CONTINUE</button>';
+          } else {
+            const pe = Math.max(1, Math.floor(score / 10));
+            const displayPe = Math.floor(pe * (1 + getPrestigeBonus() / 100));
+            saveScore(pe);
+            resetCheckpointsAfterWave50();
+            overlay.classList.remove('hidden');
+            overlay.innerHTML = '<h1 style="color:#ffcc44">VICTORY!</h1><div class="score-display">You defeated THE FINALE!</div><p style="color:#ffcc44">+' + displayPe + ' points earned!</p><p>Final Score: ' + score + '</p><button class="btn-primary" onclick="showMainMenu()">CONTINUE</button>';
+          }
         }
         return;
       }
@@ -2418,24 +3060,70 @@ function checkBossCollisions() {
 }
 
 // ─── Alien Bullets ────────────────────────────────────────────
-function updateAlienBullets(){for(let i=alienBullets.length-1;i>=0;i--){const ab=alienBullets[i];if(ab.homing){const hdx=player.x-ab.x,hdy=player.y-ab.y,hd=Math.sqrt(hdx*hdx+hdy*hdy);if(hd>0){ab.vx+=(hdx/hd)*0.03;ab.vy+=(hdy/hd)*0.03;const hs=Math.sqrt(ab.vx*ab.vx+ab.vy*ab.vy);if(hs>ab.maxSpd){ab.vx=ab.vx/hs*ab.maxSpd;ab.vy=ab.vy/hs*ab.maxSpd;}}ab.x+=ab.vx;ab.y+=ab.vy;}else if(ab.vx!==undefined){if(ab.sine){ab.sineTime+=0.1;ab.x+=ab.vx+Math.sin(ab.sineTime)*ab.sineAmp;ab.y+=ab.vy;}else{ab.x+=ab.vx;ab.y+=ab.vy;}}else{ab.y+=ab.speed;}if(ab.y>H+20||ab.y<-20||ab.x<-20||ab.x>W+20){alienBullets.splice(i,1);continue;}if(player.invincible<=0){const dx=Math.abs(ab.x-player.x),dy=Math.abs(ab.y-player.y);if(dx<16&&dy<20){alienBullets.splice(i,1);loseLife();}}}}
-function drawAlienBullets(){for(const ab of alienBullets){const ib=ab.w>=5;const grad=ctx.createLinearGradient(ab.x,ab.y,ab.x,ab.y+ab.h);if(ib){grad.addColorStop(0,'#ff2266');grad.addColorStop(1,'#ff8800');}else{grad.addColorStop(0,'#ff4444');grad.addColorStop(1,'#ff8800');}ctx.fillStyle=grad;ctx.fillRect(ab.x-ab.w/2,ab.y-ab.h/2,ab.w,ab.h);ctx.shadowColor=ib?'#ff2266':'#ff4400';ctx.shadowBlur=ib?8:6;ctx.fillRect(ab.x-ab.w/2,ab.y-ab.h/2,ab.w,ab.h);ctx.shadowBlur=0;}}
+function updateAlienBullets(){
+  const abMult=(abilityActiveTimers.timeWarp>0)?0.5:1;
+  for(let i=alienBullets.length-1;i>=0;i--){const ab=alienBullets[i];if(ab.homing){const hdx=player.x-ab.x,hdy=player.y-ab.y,hd=Math.sqrt(hdx*hdx+hdy*hdy);if(hd>0){ab.vx+=(hdx/hd)*0.03;ab.vy+=(hdy/hd)*0.03;const hs=Math.sqrt(ab.vx*ab.vx+ab.vy*ab.vy);if(hs>ab.maxSpd*abMult){ab.vx=ab.vx/hs*ab.maxSpd*abMult;ab.vy=ab.vy/hs*ab.maxSpd*abMult;}}ab.x+=ab.vx*abMult;ab.y+=ab.vy*abMult;}else if(ab.vx!==undefined){if(ab.sine){ab.sineTime+=0.1;ab.x+=(ab.vx+Math.sin(ab.sineTime)*ab.sineAmp)*abMult;ab.y+=ab.vy*abMult;}else{ab.x+=ab.vx*abMult;ab.y+=ab.vy*abMult;}}else{ab.y+=ab.speed*abMult;}if(ab.y>H+40||ab.y<-40||ab.x<-40||ab.x>W+40){alienBullets.splice(i,1);continue;}if(player.invincible<=0){const dx=Math.abs(ab.x-player.x),dy=Math.abs(ab.y-player.y);if(dx<16&&dy<20){alienBullets.splice(i,1);loseLife(1+(challengeRunActive?challengeModifiers.enemyDamage:0));}}}
+}
+function drawAlienBullets(){ctx.shadowColor='#ff4400';ctx.shadowBlur=6;for(const ab of alienBullets){const ib=ab.w>=5;const grad=ctx.createLinearGradient(ab.x,ab.y,ab.x,ab.y+ab.h);if(ib){grad.addColorStop(0,'#ff2266');grad.addColorStop(1,'#ff8800');}else{grad.addColorStop(0,'#ff4444');grad.addColorStop(1,'#ff8800');}ctx.fillStyle=grad;ctx.fillRect(ab.x-ab.w/2,ab.y-ab.h/2,ab.w,ab.h);}ctx.shadowBlur=0;}
 
 // ─── Collisions ───────────────────────────────────────────────
-function checkCollisions(){const dmgBonus=1+getUpgradeLevel('damage');for(let bi=bullets.length-1;bi>=0;bi--){const b=bullets[bi];for(let ai=aliens.length-1;ai>=0;ai--){const a=aliens[ai];const dx=Math.abs(b.x-a.x),dy=Math.abs((b.y+b.h/2)-a.y);if(dx<(b.w/2+a.w/2)&&dy<(b.h/2+a.h/2)){bullets.splice(bi,1);a.hp-=dmgBonus;spawnHitParticles(a.x,a.y,'#ffaa33');if(a.hp<=0){const t=ALIEN_TYPES[a.type];score+=t.score*Math.ceil(wave/2);hudScore.textContent='SCORE: '+score;spawnExplosion(a.x,a.y);maybeDropPowerup(a.x,a.y);aliens.splice(ai,1);}break;}}}if(player.invincible<=0){for(let ai=aliens.length-1;ai>=0;ai--){const a=aliens[ai];const dx=Math.abs(player.x-a.x),dy=Math.abs(player.y-a.y);if(dx<24&&dy<28){spawnExplosion(a.x,a.y);aliens.splice(ai,1);loseLife();break;}}}}
+function checkCollisions(){
+  const dmgBonus=1+getUpgradeLevel('damage');
+  for(let bi=bullets.length-1;bi>=0;bi--){
+    const b=bullets[bi];
+    for(let ai=aliens.length-1;ai>=0;ai--){
+      const a=aliens[ai];
+      const dx=Math.abs(b.x-a.x),dy=Math.abs((b.y+b.h/2)-a.y);
+      if(dx<(b.w/2+a.w/2)&&dy<(b.h/2+a.h/2)){
+        // Dodger: immune when phased
+        if(a.type==='dodger'&&a.phased){spawnHitParticles(b.x,b.y,'#9966ff44');bullets.splice(bi,1);break;}
+        // Shielder: frontal shield blocks center hits from above
+        if(a.type==='shielder'&&b.y<a.y&&Math.abs(b.x-a.x)<a.w*0.3){spawnHitParticles(b.x,b.y,'#44ccee');bullets.splice(bi,1);break;}
+        bullets.splice(bi,1);a.hp-=dmgBonus;spawnHitParticles(a.x,a.y,'#ffaa33');
+        if(a.hp<=0){
+          const t=ALIEN_TYPES[a.type];score+=t.score*Math.ceil(wave/2);hudScore.textContent='SCORE: '+score;
+          spawnExplosion(a.x,a.y);maybeDropPowerup(a.x,a.y);
+          // Splitter: spawn 2 mini-grunts on death
+          if(a.type==='splitter'){
+            const gt=ALIEN_TYPES['grunt'];
+            for(let s=-1;s<=1;s+=2){
+              aliens.push({x:a.x+s*16,y:a.y,w:gt.w*0.7,h:gt.h*0.7,hp:1,maxHp:1,speed:gt.speed+0.3+wave*0.02,startX:a.x+s*16,time:Math.random()*Math.PI*2,type:'grunt',canShoot:false,shootTimer:0,isSplitChild:true});
+            }
+          }
+          if(hasChallengePurchase('novaBlastUpgrade')&&abilityCooldowns.novaBlast>0){abilityCooldowns.novaBlast=Math.max(0,abilityCooldowns.novaBlast-60);}
+          aliens.splice(ai,1);
+        }break;
+      }
+    }
+  }
+  if(player.invincible<=0){for(let ai=aliens.length-1;ai>=0;ai--){const a=aliens[ai];const dx=Math.abs(player.x-a.x),dy=Math.abs(player.y-a.y);if(dx<24&&dy<28){spawnExplosion(a.x,a.y);aliens.splice(ai,1);loseLife();break;}}}
+}
 
 // ─── Lives ────────────────────────────────────────────────────
-function loseLife(){if(player.invincible>0)return;lives--;hudLives.textContent='LIVES: '+lives;player.invincible=90+getUpgradeLevel('shield')*10;spawnExplosion(player.x,player.y);if(lives<=0)gameOver();}
+function loseLife(dmg){if(player.invincible>0)return;lives-=(dmg||1);hudLives.textContent='LIVES: '+lives;player.invincible=90+getUpgradeLevel('shield')*10;spawnExplosion(player.x,player.y);if(lives<=0)gameOver();}
 
 // ─── Particles ────────────────────────────────────────────────
 function spawnExplosion(x,y){for(let i=0;i<20;i++){const angle=Math.random()*Math.PI*2;const speed=Math.random()*3+1;particles.push({x,y,vx:Math.cos(angle)*speed,vy:Math.sin(angle)*speed,life:30+Math.random()*20,maxLife:50,size:Math.random()*4+2,color:['#ff6633','#ffaa22','#ff3300','#ffdd44'][Math.floor(Math.random()*4)]});}}
 function spawnHitParticles(x,y,color){for(let i=0;i<6;i++){const angle=Math.random()*Math.PI*2;const speed=Math.random()*2+0.5;particles.push({x,y,vx:Math.cos(angle)*speed,vy:Math.sin(angle)*speed,life:15+Math.random()*10,maxLife:25,size:Math.random()*3+1,color});}}
-function updateParticles(){for(let i=particles.length-1;i>=0;i--){const p=particles[i];p.x+=p.vx;p.y+=p.vy;p.life--;if(p.life<=0)particles.splice(i,1);}}
+function updateParticles(){let w=0;for(let i=0;i<particles.length;i++){const p=particles[i];p.x+=p.vx;p.y+=p.vy;p.life--;if(p.life>0)particles[w++]=p;}particles.length=w;}
 function drawParticles(){for(const p of particles){ctx.globalAlpha=p.life/p.maxLife;ctx.fillStyle=p.color;ctx.fillRect(p.x-p.size/2,p.y-p.size/2,p.size,p.size);}ctx.globalAlpha=1;}
 
 // ─── Game Over / Reset ────────────────────────────────────────
 function gameOver(){
   gameRunning=false;
+  if (challengeRunActive) {
+    challengeRunActive = false;
+    startingWave = preChallengeStartWave;
+    overlay.classList.remove('hidden');
+    overlay.innerHTML=`
+      <h1 style="color:#ff4444">\u2620 CHALLENGE FAILED</h1>
+      <div class="score-display">FINAL SCORE: ${score}</div>
+      <p style="color:#ff6644; font-size:16px; margin-bottom:8px;">No rewards earned. Hardcore mode.</p>
+      <p>You reached Wave ${wave}</p>
+      <button class="btn-primary" onclick="showMainMenu()">CONTINUE</button>
+    `;
+    return;
+  }
   const pointsEarned = Math.max(1, Math.floor(score / 10));
   const displayPts = Math.floor(pointsEarned * (1 + getPrestigeBonus() / 100));
   saveScore(pointsEarned);
@@ -2450,8 +3138,8 @@ function gameOver(){
 }
 
 function startGame(){
-  score=0; lives=3+getUpgradeLevel('startLives'); wave=startingWave;
-  bullets=[]; aliens=[]; particles=[]; alienBullets=[]; powerups=[];
+  score=0; lives=3+getUpgradeLevel('startLives')+(hasChallengePurchase('reinforcedHull')?1:0); wave=startingWave;
+  bullets=[]; aliens=[]; particles=[]; alienBullets=[]; powerups=[]; mines=[];
   boss=null; bossWarningTimer=0; isBossWave=false;
   shootTimer=0; waveTimer=0; alienShootTimer=0; frameCount=0;
   activePowerups={rapidFire:0,multiShot:0,spreadShot:0};
@@ -2459,6 +3147,8 @@ function startGame(){
   abilityCooldowns = { novaBlast: 0, timeWarp: 0, orbitalStrike: 0 };
   abilityActiveTimers = { timeWarp: 0 };
   orbitalStrikeTimer = 0;
+  orbitalStrikeAllHit = false;
+  orbitalStrikeExtended = false;
   // Only re-introduce enemy types that appear before startingWave
   introducedTypes={};
   for (const typeName in ALIEN_TYPES) {
@@ -2483,10 +3173,10 @@ function gameLoop(){
   if(gameRunning){
     frameCount++;
     updatePlayer(); updateBullets(); updateAliens(); updateBoss();
-    updateAlienBullets(); updatePowerups(); updateAbilities();
+    updateAlienBullets(); updatePowerups(); updateMines(); updateAbilities();
     checkCollisions(); checkBossCollisions();
     updateParticles(); updateInfoBox();
-    drawBullets(); drawAlienBullets(); drawAliens(); drawBoss();
+    drawMines(); drawBullets(); drawAlienBullets(); drawAliens(); drawBoss();
     drawPowerups(); drawPlayer(); drawParticles(); drawPowerupHUD();
     drawAbilityHUD(); drawAbilityEffects();
   }

@@ -35,8 +35,18 @@ function hashPin(pin) {
 app.use(express.json());
 app.use(express.static(__dirname)); // serve index.html and static files
 
+// Use a stable session secret so sessions survive server restarts
+const SECRET_PATH = path.join(__dirname, 'data', '.session-secret');
+let sessionSecret;
+if (fs.existsSync(SECRET_PATH)) {
+  sessionSecret = fs.readFileSync(SECRET_PATH, 'utf8').trim();
+} else {
+  sessionSecret = crypto.randomBytes(32).toString('hex');
+  fs.writeFileSync(SECRET_PATH, sessionSecret, 'utf8');
+}
+
 app.use(session({
-  secret: 'alien-shooter-secret-' + crypto.randomBytes(8).toString('hex'),
+  secret: sessionSecret,
   resave: false,
   saveUninitialized: false,
   cookie: {
@@ -68,7 +78,9 @@ app.post('/api/auth/signup', (req, res) => {
     checkpoints: [],  // array of wave numbers: [5, 10, 15, ...]
     createdAt: Date.now(),
     prestige: 0,
-    prestigeAbilities: []
+    prestigeAbilities: [],
+    challengePoints: 0,
+    challengeShopPurchases: []
   };
   saveDB(db);
 
@@ -112,14 +124,15 @@ app.get('/api/user', (req, res) => {
 app.post('/api/user/addpoints', (req, res) => {
   if (!req.session.user) return res.status(401).json({ error: 'Not logged in.' });
   const { score } = req.body;
-  if (typeof score !== 'number' || score < 0) return res.status(400).json({ error: 'Invalid score.' });
+  if (typeof score !== 'number' || score < 0 || !Number.isFinite(score)) return res.status(400).json({ error: 'Invalid score.' });
+  const safeScore = Math.min(Math.floor(score), 1000000);
 
   const db = loadDB();
   const user = db[req.session.user];
   if (!user) return res.status(401).json({ error: 'User not found.' });
 
-  user.points += score;
-  if (score > user.highScore) user.highScore = score;
+  user.points = Math.min(user.points + safeScore, Number.MAX_SAFE_INTEGER);
+  if (safeScore > user.highScore) user.highScore = safeScore;
   saveDB(db);
 
   res.json({ ok: true, user: sanitizeUser(user) });
@@ -169,7 +182,18 @@ app.post('/api/user/upgrade', (req, res) => {
 
 // ─── Prestige Routes ──────────────────────────────────────
 const UPGRADE_MAXES = { bulletSpeed: 10, fireRate: 10, moveSpeed: 6, damage: 3, shield: 4, startLives: 2, extraBullet: 1 };
-const ABILITY_DEFS = { novaBlast: { prestige: 1, cost: 500 }, timeWarp: { prestige: 3, cost: 1500 }, orbitalStrike: { prestige: 5, cost: 3000 } };
+const CHALLENGE_SHOP_DEFS = {
+  novaBlast: { prestige: 1, cost: 5 },
+  timeWarp: { prestige: 3, cost: 7 },
+  orbitalStrike: { prestige: 5, cost: 10 },
+  wingmanCannons: { prestige: 1, cost: 10 },
+  reinforcedHull: { prestige: 1, cost: 7 },
+  rapidPlasma: { prestige: 1, cost: 7 },
+  championCrown: { prestige: 1, cost: 25 },
+  novaBlastUpgrade: { prestige: 1, cost: 10 },
+  timeWarpUpgrade: { prestige: 3, cost: 10 },
+  orbitalStrikeUpgrade: { prestige: 5, cost: 10 }
+};
 
 app.post('/api/user/prestige', (req, res) => {
   if (!req.session.user) return res.status(401).json({ error: 'Not logged in.' });
@@ -179,7 +203,7 @@ app.post('/api/user/prestige', (req, res) => {
   const currentPrestige = user.prestige || 0;
   if (currentPrestige >= 10) return res.status(400).json({ error: 'Already at max prestige.' });
 
-  const cost = 10000 * (currentPrestige + 1);
+  const cost = 20000 * (currentPrestige + 1);
   if (user.points < cost) return res.status(400).json({ error: 'Not enough points.' });
 
   const upgrades = user.upgrades || {};
@@ -194,23 +218,50 @@ app.post('/api/user/prestige', (req, res) => {
   res.json({ ok: true, user: sanitizeUser(user) });
 });
 
-app.post('/api/user/buyability', (req, res) => {
+app.post('/api/user/challengeshop', (req, res) => {
   if (!req.session.user) return res.status(401).json({ error: 'Not logged in.' });
-  const { abilityId } = req.body;
-  const abilityDef = ABILITY_DEFS[abilityId];
-  if (!abilityDef) return res.status(400).json({ error: 'Invalid ability.' });
+  const { itemId } = req.body;
+  const shopItem = CHALLENGE_SHOP_DEFS[itemId];
+  if (!shopItem) return res.status(400).json({ error: 'Invalid item.' });
 
   const db = loadDB();
   const user = db[req.session.user];
   if (!user) return res.status(401).json({ error: 'User not found.' });
 
-  if ((user.prestige || 0) < abilityDef.prestige) return res.status(400).json({ error: 'Prestige level too low.' });
-  if (!user.prestigeAbilities) user.prestigeAbilities = [];
-  if (user.prestigeAbilities.includes(abilityId)) return res.status(400).json({ error: 'Already owned.' });
-  if (user.points < abilityDef.cost) return res.status(400).json({ error: 'Not enough points.' });
+  if (shopItem.prestige && (user.prestige || 0) < shopItem.prestige)
+    return res.status(400).json({ error: 'Prestige level too low.' });
+  if (!user.challengeShopPurchases) user.challengeShopPurchases = [];
+  if (user.challengeShopPurchases.includes(itemId))
+    return res.status(400).json({ error: 'Already owned.' });
+  const cp = user.challengePoints || 0;
+  if (cp < shopItem.cost)
+    return res.status(400).json({ error: 'Not enough challenge points.' });
 
-  user.points -= abilityDef.cost;
-  user.prestigeAbilities.push(abilityId);
+  user.challengePoints = cp - shopItem.cost;
+  user.challengeShopPurchases.push(itemId);
+  if (['novaBlast', 'timeWarp', 'orbitalStrike'].includes(itemId)) {
+    if (!user.prestigeAbilities) user.prestigeAbilities = [];
+    if (!user.prestigeAbilities.includes(itemId)) user.prestigeAbilities.push(itemId);
+  }
+  saveDB(db);
+  res.json({ ok: true, user: sanitizeUser(user) });
+});
+
+app.post('/api/user/challengecomplete', (req, res) => {
+  if (!req.session.user) return res.status(401).json({ error: 'Not logged in.' });
+  const { challengePointsEarned, score } = req.body;
+  if (typeof challengePointsEarned !== 'number' || challengePointsEarned < 3)
+    return res.status(400).json({ error: 'Invalid challenge completion.' });
+  if (typeof score !== 'number' || score < 0)
+    return res.status(400).json({ error: 'Invalid score.' });
+
+  const db = loadDB();
+  const user = db[req.session.user];
+  if (!user) return res.status(401).json({ error: 'User not found.' });
+
+  user.challengePoints = (user.challengePoints || 0) + challengePointsEarned;
+  user.points += score;
+  if (score > user.highScore) user.highScore = score;
   saveDB(db);
   res.json({ ok: true, user: sanitizeUser(user) });
 });
@@ -242,6 +293,7 @@ app.post('/api/admin/modifyuser', (req, res) => {
     return res.status(403).json({ error: 'Forbidden.' });
 
   const { targetUsername, action, amount } = req.body;
+  if (!targetUsername || !action) return res.status(400).json({ error: 'Missing target or action.' });
   const db = loadDB();
   const key = targetUsername.toLowerCase();
   const user = db[key];
@@ -254,6 +306,12 @@ app.post('/api/admin/modifyuser', (req, res) => {
     case 'removePoints':
       user.points = Math.max(0, user.points - (amount || 0));
       break;
+    case 'addChallengePoints':
+      user.challengePoints = (user.challengePoints || 0) + (amount || 0);
+      break;
+    case 'removeChallengePoints':
+      user.challengePoints = Math.max(0, (user.challengePoints || 0) - (amount || 0));
+      break;
     case 'resetUpgrades':
       user.upgrades = {};
       break;
@@ -264,6 +322,8 @@ app.post('/api/admin/modifyuser', (req, res) => {
       user.upgrades = {};
       user.prestige = 0;
       user.prestigeAbilities = [];
+      user.challengePoints = 0;
+      user.challengeShopPurchases = [];
       break;
   }
   saveDB(db);
@@ -279,7 +339,9 @@ function sanitizeUser(u) {
     checkpoints: u.checkpoints || [],
     upgrades: u.upgrades || {},
     prestige: u.prestige || 0,
-    prestigeAbilities: u.prestigeAbilities || []
+    prestigeAbilities: u.prestigeAbilities || [],
+    challengePoints: u.challengePoints || 0,
+    challengeShopPurchases: u.challengeShopPurchases || []
   };
 }
 
